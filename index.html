@@ -1,0 +1,1747 @@
+<title>Pure Baby</title>
+<meta name="description" content="Pure Baby — premium baby food, diapers and skin & bath care. Gentle choices for little ones.">
+
+<!-- =========================================================================
+     PURE BABY  ·  purebaby.co.in  ·  premium baby-care e-commerce prototype
+     -------------------------------------------------------------------------
+     WHERE TO CHANGE THINGS (search these markers):
+       [CONFIG]     brand name, WhatsApp number, free-shipping threshold, currency
+       [COLORS]     brand color system (CSS variables in :root)
+       [LOGO]       the Pure Baby wordmark component
+       [DATA]       the product catalog (add / edit products here)
+       [IMAGES]     the placeholder-image layer (swap for licensed assets)
+     Data is illustrative prototype data based on the public MiniMee Kids
+     catalog (minimeekids.com). Prices/discounts are illustrative. No real
+     payment is processed. Replace product images with licensed assets.
+     ========================================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap">
+
+<style>
+/* ============================== [COLORS] ============================== */
+:root{
+  color-scheme: light;
+  --bg:#FAF6EE;
+  --surface:#FFFFFF;
+  --surface-2:#F3EBDD;
+  --surface-3:#EFE6D6;
+  --ink:#2C2B26;
+  --ink-soft:#4A473F;
+  --muted:#6F6A5E;
+  --line:#E7DDCB;
+  --line-strong:#D9CDB6;
+
+  --sage:#7C8F6D;
+  --sage-deep:#5B6B4D;
+  --sage-ink:#414D37;
+  --sage-soft:#E7EDE0;
+  --sage-tint:#F0F3EA;
+
+  --peach:#E2A484;
+  --peach-deep:#CB8560;
+  --peach-soft:#F7E6DA;
+  --peach-tint:#FBF1E9;
+
+  --star:#D6A24B;
+  --success:#5C8A5A;
+  --success-soft:#E7F0E6;
+  --danger:#B15540;
+  --danger-soft:#F6E5E0;
+
+  --shadow-sm:0 1px 2px rgba(60,50,30,.06),0 1px 3px rgba(60,50,30,.05);
+  --shadow-md:0 6px 18px -6px rgba(60,50,30,.16),0 2px 6px rgba(60,50,30,.06);
+  --shadow-lg:0 24px 50px -18px rgba(50,40,20,.28);
+
+  --radius:18px;
+  --radius-sm:12px;
+  --radius-lg:26px;
+  --radius-pill:999px;
+
+  --maxw:1200px;
+  --gutter:20px;
+  --header-h:66px;
+
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#161511;
+    --surface:#201E19;
+    --surface-2:#262218;
+    --surface-3:#2C2820;
+    --ink:#F1EADC;
+    --ink-soft:#DCD4C4;
+    --muted:#A69E8D;
+    --line:#332E24;
+    --line-strong:#413A2C;
+
+    --sage:#A2B491;
+    --sage-deep:#B9C9A9;
+    --sage-soft:#282E22;
+    --sage-tint:#22271D;
+
+    --peach:#E3A886;
+    --peach-deep:#EDB89B;
+    --peach-soft:#33281E;
+    --peach-tint:#231C15;
+
+    --star:#E0B25E;
+    --success:#8CB889;
+    --success-soft:#20291E;
+    --danger:#DA8168;
+    --danger-soft:#2E1E19;
+
+    --line-strong:#413A2C;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+    --shadow-md:0 8px 22px -8px rgba(0,0,0,.55);
+    --shadow-lg:0 26px 55px -20px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#161511;
+  --surface:#201E19;
+  --surface-2:#262218;
+  --surface-3:#2C2820;
+  --ink:#F1EADC;
+  --ink-soft:#DCD4C4;
+  --muted:#A69E8D;
+  --line:#332E24;
+  --line-strong:#413A2C;
+  --sage:#A2B491;
+  --sage-deep:#B9C9A9;
+  --sage-soft:#282E22;
+  --sage-tint:#22271D;
+  --peach:#E3A886;
+  --peach-deep:#EDB89B;
+  --peach-soft:#33281E;
+  --peach-tint:#231C15;
+  --star:#E0B25E;
+  --success:#8CB889;
+  --success-soft:#20291E;
+  --danger:#DA8168;
+  --danger-soft:#2E1E19;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+  --shadow-md:0 8px 22px -8px rgba(0,0,0,.55);
+  --shadow-lg:0 26px 55px -20px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink)}
+h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:500;letter-spacing:-.01em;text-wrap:balance;line-height:1.12}
+p{margin:0}
+::selection{background:var(--peach-soft);color:var(--ink)}
+:focus-visible{outline:2.5px solid var(--sage-deep);outline-offset:2px;border-radius:6px}
+
+/* scrollbars */
+*::-webkit-scrollbar{height:8px;width:8px}
+*::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:99px}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter);width:100%}
+.section{padding-block:clamp(40px,6vw,76px)}
+.eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sage-deep)}
+.muted{color:var(--muted)}
+.serif{font-family:var(--serif)}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid transparent;border-radius:var(--radius-pill);
+  padding:12px 22px;font-size:14.5px;font-weight:600;line-height:1;transition:.18s ease;white-space:nowrap}
+.btn svg{width:17px;height:17px}
+.btn-primary{background:var(--sage-deep);color:#fff}
+.btn-primary:hover{background:var(--sage-ink);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn-primary{color:#17190f}}
+:root[data-theme="dark"] .btn-primary{color:#17190f}
+.btn-peach{background:var(--peach-deep);color:#fff}
+.btn-peach:hover{filter:brightness(1.05);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-outline{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+.btn-outline:hover{border-color:var(--sage-deep);color:var(--sage-deep);background:var(--sage-tint)}
+.btn-ghost{background:var(--surface-2);color:var(--ink)}
+.btn-ghost:hover{background:var(--surface-3)}
+.btn-wa{background:#25936B;color:#fff}
+.btn-wa:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn-block{width:100%}
+.btn-lg{padding:15px 28px;font-size:15px}
+.btn-sm{padding:9px 15px;font-size:13px}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* ---------- pills / badges ---------- */
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:5px 11px;border-radius:var(--radius-pill);background:var(--sage-soft);color:var(--sage-deep)}
+.badge-off{background:var(--peach-deep);color:#fff;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:var(--radius-pill);letter-spacing:.01em}
+.badge-new{background:var(--sage-deep);color:#fff}
+.badge-soft{background:var(--surface);border:1px solid var(--line);color:var(--muted)}
+
+/* ---------- cards ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+
+/* ---------- product card ---------- */
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;
+  transition:.2s ease;position:relative}
+.pcard:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:var(--line-strong)}
+.pcard__media{position:relative;aspect-ratio:1/1;background:var(--surface-2);overflow:hidden}
+.pcard__media img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.pcard:hover .pcard__media img{transform:scale(1.05)}
+.pcard__flags{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:6px;z-index:2}
+.pcard__wish{position:absolute;top:10px;right:10px;z-index:2;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+  background:var(--surface);display:grid;place-items:center;opacity:0;transform:translateY(-4px);transition:.18s ease;color:var(--muted)}
+.pcard:hover .pcard__wish{opacity:1;transform:none}
+.pcard__wish.on,.pcard__wish:focus-visible{opacity:1;transform:none}
+.pcard__wish.on{color:var(--peach-deep);border-color:var(--peach)}
+.pcard__wish svg{width:18px;height:18px}
+.pcard__body{padding:14px 15px 16px;display:flex;flex-direction:column;gap:7px;flex:1}
+.pcard__brand{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--sage-deep)}
+.pcard__name{font-family:var(--serif);font-size:16px;line-height:1.22;color:var(--ink)}
+.pcard__desc{font-size:12.5px;color:var(--muted);line-height:1.4}
+.pcard__meta{font-size:11.5px;color:var(--muted)}
+.pcard__price{display:flex;align-items:baseline;gap:8px;margin-top:auto;padding-top:4px}
+.pcard__price .now{font-size:17px;font-weight:700;color:var(--ink)}
+.pcard__price .was{font-size:13px;color:var(--muted);text-decoration:line-through}
+.pcard__cartbtn{margin-top:10px}
+.soldout-veil{position:absolute;inset:0;background:color-mix(in srgb,var(--surface) 62%,transparent);display:grid;place-items:center;z-index:2}
+.soldout-veil span{background:var(--ink);color:var(--bg);font-size:12px;font-weight:600;padding:6px 14px;border-radius:99px;letter-spacing:.04em}
+
+/* rating */
+.rating{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+.stars{display:inline-flex;color:var(--star)}
+.stars svg{width:14px;height:14px}
+.stars .empty{color:var(--line-strong)}
+
+/* grids */
+.pgrid{display:grid;gap:18px;grid-template-columns:repeat(4,1fr)}
+@media(max-width:980px){.pgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.pgrid{grid-template-columns:repeat(2,1fr);gap:12px}}
+
+/* ---------- announcement bar ---------- */
+.annc{background:var(--sage-ink);color:#F3EFE4;font-size:12.5px;font-weight:500;text-align:center;
+  padding:8px 40px calc(8px);position:relative;letter-spacing:.01em}
+.annc .close{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:inherit;opacity:.7;padding:4px;line-height:0}
+.annc .close:hover{opacity:1}
+
+/* ---------- header ---------- */
+.header{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:color-mix(in srgb,var(--surface) 88%,transparent);
+  backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.header__row{display:flex;align-items:center;gap:18px;height:var(--header-h)}
+.nav{display:flex;align-items:center;gap:4px;margin-left:8px}
+.nav a{padding:9px 13px;border-radius:10px;font-size:14px;font-weight:500;color:var(--ink-soft);transition:.15s}
+.nav a:hover{background:var(--sage-tint);color:var(--sage-deep)}
+.nav a.active{color:var(--sage-deep)}
+.header__actions{margin-left:auto;display:flex;align-items:center;gap:2px}
+.iconbtn{position:relative;width:42px;height:42px;border-radius:12px;border:none;background:transparent;color:var(--ink);display:grid;place-items:center;transition:.15s}
+.iconbtn:hover{background:var(--surface-2)}
+.iconbtn svg{width:21px;height:21px}
+.countdot{position:absolute;top:5px;right:5px;min-width:17px;height:17px;padding:0 4px;border-radius:99px;background:var(--peach-deep);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;font-family:var(--sans)}
+.hamburger{display:none}
+@media(max-width:860px){.nav{display:none}.hamburger{display:grid}}
+
+/* logo */
+.logo{display:inline-flex;align-items:center;gap:10px}
+.logo__mark{width:38px;height:38px;flex:none}
+.logo__text{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1}
+.logo__text small{display:block;font-family:var(--sans);font-size:8.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--sage-deep);margin-top:3px}
+
+/* ---------- search overlay ---------- */
+.ovl{position:fixed;inset:0;z-index:90;background:rgba(28,24,16,.42);backdrop-filter:blur(3px);display:flex;justify-content:center;align-items:flex-start}
+.search-panel{background:var(--surface);width:min(680px,94vw);margin-top:12vh;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--line)}
+.search-panel__top{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.search-panel__top input{flex:1;border:none;background:none;font-size:17px;outline:none}
+.search-panel__body{max-height:52vh;overflow:auto;padding:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line-strong);background:var(--surface-2);border-radius:99px;padding:7px 13px;font-size:13px;font-weight:500;color:var(--ink-soft)}
+.chip:hover{border-color:var(--sage-deep);color:var(--sage-deep);background:var(--sage-tint)}
+.sresult{display:flex;gap:12px;align-items:center;padding:9px 10px;border-radius:12px}
+.sresult:hover{background:var(--surface-2)}
+.sresult img{width:46px;height:46px;border-radius:9px;object-fit:cover;background:var(--surface-2)}
+
+/* ---------- drawer (cart) ---------- */
+.drawer{position:fixed;inset:0;z-index:95;display:flex;justify-content:flex-end}
+.drawer__scrim{position:absolute;inset:0;background:rgba(28,24,16,.42);backdrop-filter:blur(2px)}
+.drawer__panel{position:relative;width:min(420px,100vw);background:var(--surface);height:100%;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);
+  border-left:1px solid var(--line);animation:slideIn .28s ease}
+@keyframes slideIn{from{transform:translateX(30px);opacity:.4}to{transform:none;opacity:1}}
+.drawer__head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line)}
+.drawer__body{flex:1;overflow:auto;padding:16px 20px;display:flex;flex-direction:column;gap:14px}
+.drawer__foot{border-top:1px solid var(--line);padding:18px 20px;display:flex;flex-direction:column;gap:12px;background:var(--surface-2)}
+
+/* cart line */
+.citem{display:grid;grid-template-columns:72px 1fr auto;gap:12px}
+.citem img{width:72px;height:72px;border-radius:12px;object-fit:cover;background:var(--surface-2)}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line-strong);border-radius:99px;overflow:hidden}
+.qty button{width:32px;height:32px;border:none;background:var(--surface);color:var(--ink);display:grid;place-items:center}
+.qty button:hover{background:var(--surface-3)}
+.qty span{min-width:30px;text-align:center;font-weight:600;font-size:14px}
+.linkx{background:none;border:none;color:var(--muted);font-size:12.5px;padding:0;text-decoration:underline;text-underline-offset:2px}
+.linkx:hover{color:var(--danger)}
+
+/* free-ship progress */
+.ship-prog{background:var(--sage-tint);border:1px solid var(--sage-soft);border-radius:14px;padding:12px 14px;font-size:12.5px}
+.bar{height:7px;border-radius:99px;background:var(--surface-3);overflow:hidden;margin-top:8px}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--sage),var(--sage-deep));border-radius:99px;transition:width .4s ease}
+
+/* summary rows */
+.srow{display:flex;justify-content:space-between;font-size:14px}
+.srow.total{font-size:17px;font-weight:700;padding-top:10px;border-top:1px solid var(--line);margin-top:4px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden}
+.hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-block:clamp(30px,5vw,64px)}
+.hero__eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px}
+.hero h1{font-size:clamp(2.3rem,4.6vw,3.7rem);line-height:1.04;letter-spacing:-.025em}
+.hero p.lead{font-size:clamp(15px,1.4vw,17.5px);color:var(--ink-soft);max-width:46ch;margin-top:18px;line-height:1.6}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hero__trust{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;font-size:12.5px;color:var(--muted)}
+.hero__trust b{color:var(--ink);font-weight:600}
+.hero__art{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:5/5.4;box-shadow:var(--shadow-lg);border:1px solid var(--line)}
+.hero__art img{width:100%;height:100%;object-fit:cover}
+.hero__float{position:absolute;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-md);padding:11px 14px;display:flex;align-items:center;gap:10px;font-size:12.5px}
+.hero__float svg{width:20px;height:20px;color:var(--sage-deep)}
+@media(max-width:820px){.hero__grid{grid-template-columns:1fr;gap:26px}.hero__art{aspect-ratio:16/12;order:-1}}
+
+/* ---------- category cards ---------- */
+.catgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:820px){.catgrid{grid-template-columns:1fr}}
+.catcard{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:260px;display:flex;align-items:flex-end;padding:22px;color:#fff;
+  border:1px solid var(--line);isolation:isolate;transition:.22s ease}
+.catcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.catcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.catcard::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(30,26,16,.72),rgba(30,26,16,.05) 62%);z-index:-1}
+.catcard h3{font-size:26px;color:#fff}
+.catcard p{font-size:13.5px;opacity:.92;margin-top:4px}
+.catcard .go{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-weight:600;font-size:13.5px}
+.catcard .go svg{width:16px;height:16px;transition:.2s}
+.catcard:hover .go svg{transform:translateX(4px)}
+
+/* ---------- trust ---------- */
+.trustgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:820px){.trustgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.trustgrid{grid-template-columns:1fr}}
+.trust{display:flex;gap:13px;align-items:flex-start;padding:18px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line)}
+.trust__ic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--sage-soft);color:var(--sage-deep);display:grid;place-items:center}
+.trust__ic svg{width:22px;height:22px}
+.trust h4{font-family:var(--serif);font-size:15.5px;margin-bottom:3px}
+.trust p{font-size:12.5px;color:var(--muted);line-height:1.45}
+
+/* section head */
+.shead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px}
+.shead h2{font-size:clamp(1.6rem,3vw,2.3rem)}
+.shead p{color:var(--muted);font-size:14px;margin-top:6px;max-width:52ch}
+.seeall{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--sage-deep);font-size:14px;white-space:nowrap}
+.seeall svg{width:16px;height:16px;transition:.2s}
+.seeall:hover svg{transform:translateX(3px)}
+
+/* ---------- editorial band ---------- */
+.band{background:var(--surface-2);border-block:1px solid var(--line)}
+.band__grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:760px){.band__grid{grid-template-columns:1fr;gap:24px}}
+.quote{font-family:var(--serif);font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.3;color:var(--ink)}
+
+/* ---------- collection layout ---------- */
+.col-layout{display:grid;grid-template-columns:250px 1fr;gap:30px;align-items:start}
+@media(max-width:860px){.col-layout{grid-template-columns:1fr}}
+.filter{position:sticky;top:calc(var(--header-h) + env(safe-area-inset-top,0px) + 14px)}
+.fgroup{border-bottom:1px solid var(--line);padding:16px 0}
+.fgroup:first-child{padding-top:0}
+.fgroup h4{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+.fopt{display:flex;align-items:center;gap:9px;padding:5px 0;font-size:13.5px;color:var(--ink-soft);cursor:pointer}
+.fopt input{accent-color:var(--sage-deep);width:16px;height:16px}
+.fopt .n{margin-left:auto;color:var(--muted);font-size:12px}
+.fopt:hover{color:var(--ink)}
+.col-topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+.sel{border:1px solid var(--line-strong);border-radius:10px;padding:9px 12px;background:var(--surface);font-weight:500}
+.filter-toggle{display:none}
+@media(max-width:860px){
+  .filter-toggle{display:inline-flex}
+  .filter{position:fixed;inset:0;z-index:95;background:var(--surface);padding:20px;overflow:auto;top:0}
+  .filter.closed{display:none}
+}
+
+/* ---------- product page ---------- */
+.pdp{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:start}
+@media(max-width:860px){.pdp{grid-template-columns:1fr;gap:26px}}
+.gallery__main{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:1/1;background:var(--surface-2);border:1px solid var(--line)}
+.gallery__main img{width:100%;height:100%;object-fit:cover}
+.gallery__thumbs{display:flex;gap:10px;margin-top:12px}
+.gallery__thumbs button{width:74px;height:74px;border-radius:12px;overflow:hidden;border:2px solid transparent;background:var(--surface-2);padding:0}
+.gallery__thumbs button.on{border-color:var(--sage-deep)}
+.gallery__thumbs img{width:100%;height:100%;object-fit:cover}
+.pdp__title{font-size:clamp(1.7rem,3vw,2.3rem);margin:8px 0}
+.pdp__price{display:flex;align-items:baseline;gap:12px;margin:16px 0}
+.pdp__price .now{font-size:28px;font-weight:700}
+.pdp__price .was{font-size:17px;color:var(--muted);text-decoration:line-through}
+.spec-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}
+.spec-tile{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.spec-tile .k{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.spec-tile .v{font-weight:600;font-size:14px;margin-top:2px}
+.sizepick{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px}
+.sizepick button{border:1.5px solid var(--line-strong);background:var(--surface);border-radius:12px;padding:9px 13px;font-size:13px;font-weight:600;color:var(--ink);text-align:left}
+.sizepick button small{display:block;font-weight:400;color:var(--muted);font-size:11px}
+.sizepick button.on{border-color:var(--sage-deep);background:var(--sage-tint);color:var(--sage-deep)}
+.sizepick button:disabled{opacity:.4;text-decoration:line-through}
+.buyrow{display:flex;gap:12px;align-items:center;margin:18px 0}
+.notice{border-left:3px solid var(--peach-deep);background:var(--peach-tint);padding:12px 14px;border-radius:0 12px 12px 0;font-size:13px;color:var(--ink-soft)}
+.notice.sage{border-color:var(--sage-deep);background:var(--sage-tint)}
+
+/* accordion */
+.acc{border-top:1px solid var(--line)}
+.acc__row{border-bottom:1px solid var(--line)}
+.acc__btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 2px;background:none;border:none;text-align:left;
+  font-family:var(--serif);font-size:16.5px;color:var(--ink)}
+.acc__btn svg{width:18px;height:18px;color:var(--muted);transition:transform .2s;flex:none}
+.acc__btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.acc__panel{padding:0 2px 18px;font-size:14px;color:var(--ink-soft);line-height:1.65}
+.acc__panel ul{margin:6px 0;padding-left:18px}
+.acc__panel li{margin:4px 0}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:13.5px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-weight:500}
+
+/* size chart */
+.sizechart{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+.sizechart th,.sizechart td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+.sizechart th{font-family:var(--sans);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.sizechart tr:hover td{background:var(--surface-2)}
+
+/* ---------- checkout ---------- */
+.co-grid{display:grid;grid-template-columns:1.3fr .85fr;gap:30px;align-items:start}
+@media(max-width:820px){.co-grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-size:12.5px;font-weight:600;color:var(--ink-soft)}
+.field input,.field select,.field textarea{border:1px solid var(--line-strong);border-radius:11px;padding:11px 13px;background:var(--surface);outline:none;transition:.15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--sage-deep);box-shadow:0 0 0 3px var(--sage-tint)}
+.field.err input{border-color:var(--danger)}
+.field .msg{font-size:11.5px;color:var(--danger)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:520px){.grid2{grid-template-columns:1fr}}
+.pay{display:flex;flex-direction:column;gap:10px}
+.payopt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line-strong);border-radius:13px;padding:13px 15px;cursor:pointer;transition:.15s}
+.payopt.on{border-color:var(--sage-deep);background:var(--sage-tint)}
+.payopt input{accent-color:var(--sage-deep)}
+.payopt .badges{margin-left:auto;font-size:11px;color:var(--muted);letter-spacing:.02em}
+
+/* ---------- footer ---------- */
+.footer{background:var(--sage-ink);color:#E9E4D6;margin-top:20px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .footer{background:#100F0B}}
+:root[data-theme="dark"] .footer{background:#100F0B}
+.footer a{color:#CFC9B8}
+.footer a:hover{color:#fff}
+.footer__grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;padding-block:52px}
+@media(max-width:820px){.footer__grid{grid-template-columns:1fr 1fr;gap:28px}}
+@media(max-width:460px){.footer__grid{grid-template-columns:1fr 1fr}}
+.footer h5{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin:0 0 14px;font-weight:700}
+.footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:13.5px}
+.footer__bottom{border-top:1px solid rgba(255,255,255,.13);padding-block:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;font-size:12.5px;color:#B4AF9E}
+.footer .logo__text{color:#fff}
+.footer .newsletter{display:flex;gap:8px;margin-top:14px;max-width:320px}
+.footer .newsletter input{flex:1;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);border-radius:99px;padding:10px 15px;color:#fff}
+.footer .newsletter input::placeholder{color:#B4AF9E}
+
+/* ---------- WhatsApp FAB ---------- */
+.wa-fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:70;display:inline-flex;align-items:center;gap:10px;
+  background:#25936B;color:#fff;border:none;border-radius:99px;padding:13px 18px 13px 15px;box-shadow:var(--shadow-lg);font-weight:600;font-size:14px}
+.wa-fab svg{width:22px;height:22px}
+.wa-fab .lbl{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .3s ease,margin .3s}
+.wa-fab:hover .lbl{max-width:200px}
+@media(max-width:860px){.wa-fab{bottom:calc(74px + env(safe-area-inset-bottom,0px))}}
+
+/* ---------- mobile bottom nav ---------- */
+.mbnav{display:none}
+@media(max-width:860px){
+  .mbnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:65;
+    background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--line);
+    padding-bottom:env(safe-area-inset-bottom,0px)}
+  .mbnav a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 7px;font-size:10.5px;font-weight:600;color:var(--muted);position:relative}
+  .mbnav a.active{color:var(--sage-deep)}
+  .mbnav a svg{width:22px;height:22px}
+  .mbnav .countdot{top:2px;right:calc(50% - 22px)}
+  body{padding-bottom:64px}
+}
+
+/* toast */
+.toasts{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:120;display:flex;flex-direction:column;gap:8px;width:max-content;max-width:92vw}
+@media(max-width:860px){.toasts{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+.toast{background:var(--ink);color:var(--bg);padding:12px 16px;border-radius:13px;box-shadow:var(--shadow-lg);font-size:13.5px;font-weight:500;display:flex;align-items:center;gap:10px;animation:tin .25s ease}
+.toast svg{width:17px;height:17px;color:var(--sage)}
+@keyframes tin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* misc */
+.breadcrumb{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--muted);margin-bottom:16px;flex-wrap:wrap}
+.breadcrumb a:hover{color:var(--sage-deep)}
+.breadcrumb svg{width:13px;height:13px}
+.prose{max-width:70ch}
+.prose h2{font-size:1.5rem;margin:30px 0 12px}
+.prose h3{font-size:1.15rem;margin:22px 0 8px;font-family:var(--serif)}
+.prose p{margin:12px 0;color:var(--ink-soft);line-height:1.7}
+.prose ul{margin:12px 0;padding-left:20px;color:var(--ink-soft)}
+.prose li{margin:7px 0}
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty svg{width:52px;height:52px;color:var(--line-strong);margin:0 auto 14px}
+.splash{min-height:70vh;display:grid;place-items:center;color:var(--muted);gap:14px;text-align:center}
+.spin{width:34px;height:34px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--sage-deep);animation:sp 1s linear infinite;margin:0 auto}
+@keyframes sp{to{transform:rotate(360deg)}}
+.theme-toggle{display:inline-grid}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.hide-sm{display:initial}
+@media(max-width:560px){.hide-sm{display:none}}
+</style>
+
+<div id="root">
+  <div class="splash">
+    <div>
+      <div class="spin"></div>
+      <p style="margin-top:14px;font-family:var(--serif);font-size:20px;color:var(--ink)">Pure Baby</p>
+      <p style="font-size:12px">Gentle choices for little ones</p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js"></script>
+
+<script type="text/babel" data-presets="react">
+const {useState,useEffect,useRef,createContext,useContext,useMemo} = React;
+
+/* =============================== [CONFIG] =============================== */
+const CONFIG = {
+  BRAND: "Pure Baby",
+  TAGLINE: "Gentle choices for little ones.",
+  DOMAIN: "purebaby.co.in",
+  CURRENCY: "₹",
+  FREE_SHIPPING_THRESHOLD: 2000,
+  SHIPPING_FLAT: 99,
+  ANNOUNCEMENT: "Free shipping on orders above ₹2,000  ·  Gentle care, delivered across India",
+  // NOTE: no WhatsApp number is publicly confirmed for the reference catalogue.
+  // 917702077077 is MiniMee Kids' publicly listed phone (Hyderabad) used here as
+  // a labelled PLACEHOLDER. Replace with Pure Baby's own WhatsApp business number.
+  WHATSAPP_NUMBER: "917702077077",
+  EMAIL: "care@purebaby.co.in",
+  PHONE: "+91 77020 77077",
+};
+
+const fmt = n => CONFIG.CURRENCY + Number(n).toLocaleString("en-IN");
+const pct = (mrp,price)=> mrp>price ? Math.round((1-price/mrp)*100) : 0;
+const waLink = (msg)=> `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+/* =============================== ICONS =============================== */
+const I = {
+  search:"M11 4a7 7 0 105.29 12.03l3.84 3.84 1.41-1.41-3.84-3.84A7 7 0 0011 4zm0 2a5 5 0 110 10 5 5 0 010-10z",
+  heart:"M12 21s-7.5-4.7-10-9.2C.6 9 1.6 5.5 4.7 4.6 7 3.9 9.2 5 12 8c2.8-3 5-4.1 7.3-3.4C22.4 5.5 23.4 9 22 11.8 19.5 16.3 12 21 12 21z",
+  cart:"M7 4h-2l-1 2H2v2h1.2l2.6 8.6A2 2 0 007.7 18H18v-2H8.2l-.3-1H18a2 2 0 001.9-1.4l1.8-6.3A1 1 0 0020.7 6H6.2l-.5-2zM8 20a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm9 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z",
+  user:"M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.7-9 6v2h18v-2c0-3.3-4-6-9-6z",
+  menu:"M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z",
+  close:"M6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12 19 6.4 17.6 5 12 10.6 6.4 5z",
+  star:"M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7L12 2z",
+  plus:"M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5z",
+  minus:"M5 11h14v2H5z",
+  trash:"M9 3v1H4v2h16V4h-5V3H9zM6 8v11a2 2 0 002 2h8a2 2 0 002-2V8H6zm3 2h2v9H9v-9zm4 0h2v9h-2v-9z",
+  chevron:"M6 9l6 6 6-6",
+  right:"M9 6l6 6-6 6",
+  check:"M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z",
+  truck:"M3 4h11v9H3V4zm12 3h3.5L21 10v3h-2a2 2 0 11-4 0h-1V7zM6.5 15a2 2 0 100 4 2 2 0 000-4zm11 0a2 2 0 100 4 2 2 0 000-4z",
+  shield:"M12 2l8 3v6c0 5-3.4 8.5-8 11-4.6-2.5-8-6-8-11V5l8-3zm-1.2 12.4 5-5-1.4-1.4-3.6 3.6-1.6-1.6L7.8 11l3 3.4z",
+  leaf:"M5 21c0-6 4-13 15-14 0 0 1 10-6 14-4 2.3-9 0-9 0zm3-3c3-4 6-6 9-7",
+  headset:"M12 2a9 9 0 00-9 9v5a3 3 0 003 3h1v-7H5v-1a7 7 0 0114 0v1h-2v7h1a3 3 0 003-3v-5a9 9 0 00-9-9z",
+  wa:"M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm0 2a8 8 0 11-4.1 14.8l-.3-.2-2.6.7.7-2.5-.2-.3A8 8 0 0112 4zm-2.7 3.9c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.9 4.4 3.9 2.2.9 2.6.7 3.1.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3l-1.6-.8c-.2-.1-.4-.1-.6.1l-.6.8c-.1.2-.3.2-.5.1-.6-.2-1.3-.5-2-1.2-.5-.5-.9-1.1-1-1.3-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3.2-.5v-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4z",
+  filter:"M4 5h16v2l-6 6v6l-4-2v-4L4 7V5z",
+  home:"M12 3l9 8h-3v9h-4v-6h-4v6H6v-9H3l9-8z",
+  grid:"M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z",
+  info:"M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z",
+  spark:"M12 2l1.6 5.6L19 9l-5.4 1.4L12 16l-1.6-5.6L5 9l5.4-1.4L12 2z",
+  drop:"M12 2s6 6.7 6 11a6 6 0 11-12 0c0-4.3 6-11 6-11z",
+  box:"M12 2l9 4.5v11L12 22 3 17.5v-11L12 2zm0 2.3L5.5 7.4 12 10.5l6.5-3.1L12 4.3z",
+  copy:"M9 3h10a2 2 0 012 2v12h-2V5H9V3zM5 7h10a2 2 0 012 2v12H3V9a2 2 0 012-2z",
+};
+function Icon({n,style}){return <svg viewBox="0 0 24 24" fill="currentColor" style={style} aria-hidden="true"><path d={I[n]}/></svg>;}
+
+/* =============================== [LOGO] =============================== */
+function Logo({small}){
+  return (
+    <span className="logo">
+      <svg className="logo__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true" style={small?{width:32,height:32}:null}>
+        <circle cx="24" cy="24" r="23" fill="var(--sage-soft)" stroke="var(--sage)" strokeWidth="1.2"/>
+        <path d="M24 34c-6-3.4-10-6.8-10-11.4C14 19 16.4 17 19 17c2 0 3.7 1.1 5 3 1.3-1.9 3-3 5-3 2.6 0 5 2 5 5.6C34 27.2 30 30.6 24 34z" fill="var(--peach)"/>
+        <circle cx="24" cy="15" r="3.4" fill="var(--sage-deep)"/>
+      </svg>
+      <span className="logo__text">Pure Baby<small>{CONFIG.DOMAIN}</small></span>
+    </span>
+  );
+}
+
+/* =============================== [IMAGES] =============================== */
+/* Placeholder image layer — generates a tasteful product-style SVG per item.
+   Swap productImage() for a real CDN/URL lookup when licensed assets exist. */
+const TONES = {
+  "baby-food":["#EAE0CB","#F0E8D6","#E4D8BE"],
+  "diapers":["#E3EAE0","#EAF0E6","#DAE4D6"],
+  "skin-bath":["#F4E4D9","#F8EDE4","#EFD8C9"],
+};
+const ACCENT = {"baby-food":"#B99B5E","diapers":"#7C8F6D","skin-bath":"#CB8560"};
+
+function svgURI(svg){return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg);}
+function shape(cat,accent){
+  if(cat==="baby-food") return `<rect x='118' y='150' width='164' height='210' rx='20' fill='#fff' opacity='.92'/><rect x='146' y='120' width='108' height='44' rx='12' fill='${accent}' opacity='.85'/><rect x='118' y='236' width='164' height='58' fill='${accent}' opacity='.16'/><circle cx='200' cy='265' r='26' fill='${accent}' opacity='.5'/>`;
+  if(cat==="diapers") return `<path d='M110 180 h180 a10 10 0 0 1 10 10 v18 c-48 24 -152 24 -200 0 v-18 a10 10 0 0 1 10 -10z' fill='#fff' opacity='.94'/><path d='M112 205 c40 78 136 78 176 0' fill='none' stroke='${accent}' stroke-width='10' opacity='.5'/><circle cx='200' cy='300' r='10' fill='${accent}' opacity='.6'/>`;
+  return `<rect x='158' y='120' width='84' height='250' rx='26' fill='#fff' opacity='.94'/><rect x='176' y='96' width='48' height='34' rx='9' fill='${accent}' opacity='.85'/><rect x='158' y='250' width='84' height='60' fill='${accent}' opacity='.16'/><circle cx='200' cy='300' r='20' fill='${accent}' opacity='.45'/>`;
+}
+function productImage(p,variant=0){
+  const tones = TONES[p.cat]||TONES["baby-food"];
+  const bg = tones[variant%tones.length];
+  const bg2 = tones[(variant+1)%tones.length];
+  const acc = ACCENT[p.cat];
+  const brand = (p.brand||"").toUpperCase();
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'>
+    <defs><radialGradient id='g' cx='50%' cy='36%' r='80%'>
+      <stop offset='0%' stop-color='${bg2}'/><stop offset='100%' stop-color='${bg}'/></radialGradient></defs>
+    <rect width='400' height='400' fill='url(#g)'/>
+    <circle cx='200' cy='215' r='150' fill='#ffffff' opacity='.28'/>
+    ${shape(p.cat,acc)}
+    <text x='200' y='58' text-anchor='middle' font-family='Inter,sans-serif' font-size='15' letter-spacing='3' font-weight='700' fill='${acc}'>${brand}</text>
+    <text x='200' y='384' text-anchor='middle' font-family='Georgia,serif' font-size='15' fill='#4A473F' opacity='.72'>${(p.imgLabel||p.type||"").slice(0,30)}</text>
+  </svg>`;
+  return svgURI(svg);
+}
+function heroImage(){
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='860' viewBox='0 0 800 860'>
+   <defs><linearGradient id='b' x1='0' y1='0' x2='1' y2='1'>
+     <stop offset='0%' stop-color='#F4E7D8'/><stop offset='55%' stop-color='#EAE0CB'/><stop offset='100%' stop-color='#E7EDE0'/></linearGradient>
+     <radialGradient id='s' cx='30%' cy='26%' r='60%'><stop offset='0%' stop-color='#F9EFE2'/><stop offset='100%' stop-color='#F9EFE2' stop-opacity='0'/></radialGradient></defs>
+   <rect width='800' height='860' fill='url(#b)'/><rect width='800' height='860' fill='url(#s)'/>
+   <circle cx='250' cy='250' r='150' fill='#E2A484' opacity='.30'/>
+   <circle cx='560' cy='430' r='210' fill='#7C8F6D' opacity='.22'/>
+   <circle cx='300' cy='620' r='120' fill='#CB8560' opacity='.20'/>
+   <g opacity='.9'>
+     <path d='M400 560c-70-40-118-80-118-134 0-42 28-70 60-70 24 0 44 13 58 36 14-23 34-36 58-36 32 0 60 28 60 70 0 54-48 94-118 134z' fill='#fff' opacity='.85'/>
+     <circle cx='400' cy='372' r='40' fill='#5B6B4D'/>
+   </g>
+   <text x='400' y='800' text-anchor='middle' font-family='Georgia,serif' font-size='26' fill='#5B6B4D' opacity='.6'>Pure care, delivered gently</text>
+  </svg>`;
+  return svgURI(svg);
+}
+function catImage(cat){
+  const acc=ACCENT[cat]; const tone=TONES[cat][0]; const tone2=TONES[cat][2];
+  const svg=`<svg xmlns='http://www.w3.org/2000/svg' width='520' height='420' viewBox='0 0 520 420'>
+    <defs><linearGradient id='c' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='${tone}'/><stop offset='100%' stop-color='${tone2}'/></linearGradient></defs>
+    <rect width='520' height='420' fill='url(#c)'/>
+    <circle cx='390' cy='150' r='150' fill='#fff' opacity='.22'/>
+    <circle cx='150' cy='320' r='120' fill='${acc}' opacity='.28'/>
+    <g transform='translate(160,70) scale(1.5)'>${shape(cat,acc)}</g>
+  </svg>`;
+  return svgURI(svg);
+}
+
+/* =============================== [DATA] =============================== */
+/* Illustrative prototype catalogue based on the public MiniMee Kids catalogue.
+   Real: brand, product name, size/pack, weight ranges (diapers), origin country.
+   Illustrative: MRP/discount, ratings (shown as "No reviews yet"), long-form
+   copy and specifications are generic placeholders — always verify on packaging. */
+function P(o){
+  return {
+    reviewCount:0, rating:null, availability:true, featured:false, isNew:false,
+    ...o,
+    discount: pct(o.mrp,o.price),
+  };
+}
+const RAW = [
+  // ---------- BABY FOOD ----------
+  P({id:"kendamil-organic-stage1",brand:"Kendamil",name:"Organic First Infant Milk — Stage 1",cat:"baby-food",sub:"Infant formula",
+     price:6499,mrp:6999,size:"800 g",age:"0–6 months",type:"Infant formula",origin:"United Kingdom",featured:true,imgLabel:"Organic Stage 1"}),
+  P({id:"kendamil-organic-stage2",brand:"Kendamil",name:"Organic Follow-On Milk — Stage 2",cat:"baby-food",sub:"Follow-on formula",
+     price:6499,mrp:6999,size:"800 g",age:"6–12 months",type:"Follow-on formula",origin:"United Kingdom",imgLabel:"Organic Stage 2"}),
+  P({id:"kendamil-classic-stage1",brand:"Kendamil",name:"Classic First Infant Milk — Stage 1",cat:"baby-food",sub:"Infant formula",
+     price:5499,mrp:5999,size:"800 g",age:"0–6 months",type:"Infant formula",origin:"United Kingdom",featured:true,imgLabel:"Classic Stage 1"}),
+  P({id:"hipp-combiotic-stage1",brand:"HiPP",name:"Organic Combiotic First Infant Milk — Stage 1",cat:"baby-food",sub:"Infant formula",
+     price:4999,mrp:5499,size:"800 g",age:"0–6 months",type:"Infant formula",origin:"Germany",featured:true,imgLabel:"Combiotic Stage 1"}),
+  P({id:"aptamil-followon-stage2",brand:"Aptamil",name:"Follow-On Milk — Stage 2",cat:"baby-food",sub:"Follow-on formula",
+     price:4799,mrp:4999,size:"800 g",age:"6–12 months",type:"Follow-on formula",origin:"United Kingdom",imgLabel:"Follow-On Stage 2"}),
+  P({id:"similac-360-sensitive",brand:"Similac",name:"360 Total Care Sensitive Infant Formula",cat:"baby-food",sub:"Infant formula",
+     price:11499,mrp:11999,size:"1.13 kg",age:"0–12 months",type:"Infant formula",origin:"USA",imgLabel:"360 Total Care"}),
+  P({id:"gerber-organic-oatmeal",brand:"Gerber",name:"Organic Oatmeal Cereal",cat:"baby-food",sub:"Cereal",
+     price:1199,mrp:1399,size:"227 g",age:"6+ months",type:"Cereal",origin:"USA",featured:true,availability:false,imgLabel:"Organic Oatmeal"}),
+  P({id:"kendamil-baby-rice",brand:"Kendamil",name:"Organic Smooth Baby Rice",cat:"baby-food",sub:"Cereal",
+     price:1199,mrp:1349,size:"120 g",age:"6+ months",type:"Cereal",origin:"United Kingdom",isNew:true,imgLabel:"Smooth Baby Rice"}),
+  P({id:"kendamil-goat-stage1",brand:"Kendamil",name:"Goat First Infant Milk — Stage 1",cat:"baby-food",sub:"Infant formula",
+     price:6799,mrp:7299,size:"800 g",age:"0–6 months",type:"Infant formula",origin:"United Kingdom",imgLabel:"Goat Stage 1"}),
+  P({id:"enfamil-neuropro-care",brand:"Enfamil",name:"NeuroPro Care Infant Formula (2-Pack)",cat:"baby-food",sub:"Infant formula",
+     price:12999,mrp:13499,size:"2 × 587 g",age:"0–12 months",type:"Infant formula",origin:"USA",imgLabel:"NeuroPro Care"}),
+
+  // ---------- DIAPERS ----------
+  P({id:"bambo-tape-1",brand:"Bambo Nature",name:"Tape Diapers — Size 1 (XS)",cat:"diapers",sub:"Tape diaper",
+     price:899,mrp:999,weight:"2–4 kg",pack:"22 pcs",diaperType:"Tape",dSize:"XS",wetness:true,origin:"Denmark",featured:true,imgLabel:"Size 1 · XS"}),
+  P({id:"bambo-tape-2",brand:"Bambo Nature",name:"Tape Diapers — Size 2 (Small)",cat:"diapers",sub:"Tape diaper",
+     price:1299,mrp:1399,weight:"3–6 kg",pack:"30 pcs",diaperType:"Tape",dSize:"S",wetness:true,origin:"Denmark",imgLabel:"Size 2 · S"}),
+  P({id:"bambo-tape-3",brand:"Bambo Nature",name:"Tape Diapers — Size 3 (Medium)",cat:"diapers",sub:"Tape diaper",
+     price:1299,mrp:1399,weight:"4–8 kg",pack:"28 pcs",diaperType:"Tape",dSize:"M",wetness:true,origin:"Denmark",featured:true,imgLabel:"Size 3 · M"}),
+  P({id:"bambo-tape-4",brand:"Bambo Nature",name:"Tape Diapers — Size 4 (Large)",cat:"diapers",sub:"Tape diaper",
+     price:1299,mrp:1399,weight:"7–14 kg",pack:"24 pcs",diaperType:"Tape",dSize:"L",wetness:true,origin:"Denmark",imgLabel:"Size 4 · L"}),
+  P({id:"bambo-tape-5",brand:"Bambo Nature",name:"Tape Diapers — Size 5 (XL)",cat:"diapers",sub:"Tape diaper",
+     price:1199,mrp:1349,weight:"12–18 kg",pack:"22 pcs",diaperType:"Tape",dSize:"XL",wetness:true,origin:"Denmark",imgLabel:"Size 5 · XL"}),
+  P({id:"bambo-pant-6",brand:"Bambo Nature",name:"Pant Diapers — Size 6 (XXL)",cat:"diapers",sub:"Pant diaper",
+     price:1199,mrp:1349,weight:"15+ kg",pack:"18 pcs",diaperType:"Pant",dSize:"XXL",wetness:true,origin:"Denmark",isNew:true,imgLabel:"Size 6 · XXL"}),
+  P({id:"milk-rashaway-l",brand:"Milk",name:"Rash Away Baby Diapers — Large (L)",cat:"diapers",sub:"Pant diaper",
+     price:1499,mrp:1799,weight:"9–17 kg",pack:"36 pcs",diaperType:"Pant",dSize:"L",wetness:true,origin:"India",featured:true,imgLabel:"Rash Away · L"}),
+
+  // ---------- SKIN & BATH ----------
+  P({id:"cerave-baby-wash",brand:"CeraVe",name:"Baby Wash & Shampoo",cat:"skin-bath",sub:"Wash & shampoo",
+     price:2699,mrp:2899,size:"237 ml",age:"0+ months",type:"Wash & shampoo",concern:"Everyday cleansing",origin:"USA",featured:true,imgLabel:"Wash & Shampoo"}),
+  P({id:"cerave-baby-lotion",brand:"CeraVe",name:"Baby Moisturizing Lotion",cat:"skin-bath",sub:"Lotion",
+     price:2699,mrp:2899,size:"237 ml",age:"0+ months",type:"Lotion",concern:"Dryness",origin:"USA",imgLabel:"Moisturizing Lotion"}),
+  P({id:"cetaphil-baby-wash",brand:"Cetaphil",name:"Baby Wash & Shampoo",cat:"skin-bath",sub:"Wash & shampoo",
+     price:1499,mrp:1699,size:"400 ml",age:"0+ months",type:"Wash & shampoo",concern:"Everyday cleansing",origin:"Canada",featured:true,imgLabel:"Wash & Shampoo"}),
+  P({id:"cetaphil-baby-oil",brand:"Cetaphil",name:"Baby Moisturising Oil",cat:"skin-bath",sub:"Oil",
+     price:799,mrp:899,size:"200 ml",age:"0+ months",type:"Massage oil",concern:"Dryness",origin:"Canada",imgLabel:"Moisturising Oil"}),
+  P({id:"mustela-shampoo",brand:"Mustela",name:"Gentle Shampoo",cat:"skin-bath",sub:"Shampoo",
+     price:800,mrp:950,size:"200 ml",age:"0+ months",type:"Shampoo",concern:"Everyday cleansing",origin:"France",imgLabel:"Gentle Shampoo"}),
+  P({id:"mustela-hydrabebe",brand:"Mustela",name:"Hydra Bébé Body Lotion",cat:"skin-bath",sub:"Lotion",
+     price:1400,mrp:1600,size:"300 ml",age:"0+ months",type:"Lotion",concern:"Dryness",origin:"France",imgLabel:"Hydra Bébé"}),
+  P({id:"aveeno-baby-lotion",brand:"Aveeno",name:"Baby Daily Moisture Lotion",cat:"skin-bath",sub:"Lotion",
+     price:2799,mrp:2999,size:"532 ml",age:"0+ months",type:"Lotion",concern:"Dryness",origin:"USA",imgLabel:"Daily Moisture"}),
+  P({id:"burtsbees-powder",brand:"Burt's Bees",name:"Baby Dusting Powder",cat:"skin-bath",sub:"Powder",
+     price:1999,mrp:2199,size:"212 g",age:"0+ months",type:"Dusting powder",concern:"Everyday care",origin:"USA",imgLabel:"Dusting Powder"}),
+  P({id:"babyforest-snan",brand:"Baby Forest",name:"Sampoorna Snan Body Wash",cat:"skin-bath",sub:"Body wash",
+     price:795,mrp:895,size:"200 ml",age:"0+ months",type:"Body wash",concern:"Everyday cleansing",origin:"India",featured:true,isNew:true,imgLabel:"Sampoorna Snan"}),
+  P({id:"cetaphil-rash-cream",brand:"Cetaphil",name:"Baby Advanced Protection Cream",cat:"skin-bath",sub:"Diaper rash cream",
+     price:689,mrp:799,size:"85 g",age:"0+ months",type:"Diaper rash cream",concern:"Diaper rash",origin:"Canada",imgLabel:"Protection Cream"}),
+];
+
+// attach generated images + gallery variants
+const PRODUCTS = RAW.map(p=>({...p, images:[productImage(p,0),productImage(p,1),productImage(p,2)]}));
+const byId = id => PRODUCTS.find(p=>p.id===id);
+
+const CATEGORIES = [
+  {slug:"baby-food",title:"Baby Food",tag:"Nourishment for growing little ones",cta:"Shop Baby Food",img:catImage("baby-food")},
+  {slug:"diapers",title:"Diapers",tag:"Comfort, protection and a better fit",cta:"Shop Diapers",img:catImage("diapers")},
+  {slug:"skin-bath",title:"Skin & Bath Care",tag:"Gentle everyday care for delicate skin",cta:"Shop Skin & Bath",img:catImage("skin-bath")},
+];
+const catTitle = slug => (CATEGORIES.find(c=>c.slug===slug)||{}).title || "Shop All";
+
+const DIAPER_SIZES = [
+  {label:"Newborn / XS",range:"2–4 kg"},{label:"Small (S)",range:"3–6 kg"},
+  {label:"Medium (M)",range:"4–8 kg"},{label:"Large (L)",range:"7–14 kg"},
+  {label:"XL",range:"12–18 kg"},{label:"XXL",range:"15+ kg"},
+];
+
+/* long-form content builder (generic, clearly-placeholder where uncertain) */
+function content(p){
+  const base = {
+    description:`The ${p.brand} ${p.name} is part of the Pure Baby ${catTitle(p.cat).toLowerCase()} range — carefully selected essentials for everyday baby care. This listing uses illustrative prototype details; always check the product packaging for the latest information.`,
+    origin:p.origin||"See packaging",
+    manufacturer:`${p.brand} — see product packaging for manufacturer, importer and batch details (placeholder).`,
+    shipping:`Dispatched within 1–2 business days. Free shipping on orders above ${fmt(CONFIG.FREE_SHIPPING_THRESHOLD)}; a flat ${fmt(CONFIG.SHIPPING_FLAT)} applies below that. Delivered across India.`,
+    returns:`Unopened items in original packaging can be returned within 7 days of delivery. For hygiene and safety reasons, opened baby food, diapers and personal-care products cannot be returned unless damaged or defective.`,
+    ingredients:["Placeholder — full ingredient list is printed on the product pack. Always read the label before use."],
+    safety:"For external use as directed. Keep out of reach of children. Store in a cool, dry place away from direct sunlight. Discontinue use if irritation occurs.",
+  };
+  if(p.cat==="baby-food"){
+    base.benefits=["Formulated for the "+p.age+" stage","Convenient to prepare and store","From a trusted infant-nutrition brand","Sourced and handled with care"];
+    base.howToUse="Always follow the preparation and feeding instructions printed on the pack. Use freshly boiled, cooled water and the enclosed scoop; do not over- or under-concentrate. Prepare each feed fresh and discard leftovers.";
+    base.safety="Breast milk is best for babies. Infant formula should be used on the advice of a healthcare professional. Prepare, use and store strictly as directed on the pack. Improper preparation can make your baby ill.";
+    base.nutrition="Nutritional and allergen information is printed on the pack (placeholder). Contains milk. Always check for allergens before use.";
+  } else if(p.cat==="diapers"){
+    base.benefits=["Absorbent core for long-lasting dryness","Soft, breathable materials on delicate skin","Snug, secure fit for "+p.weight,(p.wetness?"Wetness indicator changes colour when it's time to change":"Easy-to-use design")];
+    base.howToUse="Choose the size that matches your baby's weight. Change regularly and whenever soiled to help keep skin dry and comfortable. Fasten snugly but not too tight.";
+    base.safety="For external use only. Change frequently to help prevent nappy rash. Keep packaging away from babies and children to avoid risk of suffocation. Dispose of used diapers responsibly.";
+    base.ingredients=["Materials and construction are described on the pack (placeholder)."];
+  } else {
+    base.benefits=["Gentle formula for a baby's delicate skin","Suitable from "+p.age+" (see pack)","For everyday "+(p.concern||"care").toLowerCase(),"Dermatologically tested by the brand (see pack)"];
+    base.howToUse="Apply as directed on the pack. For washes and shampoos, use a small amount, lather gently and rinse well, avoiding the eyes. For lotions, oils and creams, massage gently onto clean, dry skin.";
+    base.safety="For external use only. Avoid contact with eyes. This product is a cosmetic personal-care item and is not intended to treat, cure or prevent any medical condition. If irritation or a rash occurs, discontinue use and consult a paediatrician.";
+    base.ingredients=["Full ingredient (INCI) list is printed on the pack (placeholder). Patch-test before first use if your baby has sensitive skin."];
+  }
+  return base;
+}
+
+/* =============================== STORE (context) =============================== */
+const Store = createContext(null);
+const useStore = ()=>useContext(Store);
+const lsGet=(k,f)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):f;}catch(e){return f;}};
+const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
+
+function StoreProvider({children}){
+  const [route,setRoute]=useState({name:"home"});
+  const [cart,setCart]=useState(()=>lsGet("pb_cart",[]));
+  const [wish,setWish]=useState(()=>lsGet("pb_wish",[]));
+  const [toasts,setToasts]=useState([]);
+  const [drawer,setDrawer]=useState(false);
+  const [search,setSearch]=useState(false);
+
+  useEffect(()=>lsSet("pb_cart",cart),[cart]);
+  useEffect(()=>lsSet("pb_wish",wish),[wish]);
+
+  // hash sync (plain tokens only — sandbox allows letters/digits/.-_~)
+  useEffect(()=>{
+    const parse=()=>{
+      const h=(location.hash||"").replace(/^#/,"");
+      if(!h){setRoute({name:"home"});return;}
+      if(h.startsWith("product-")){const p=byId(h.slice(8));if(p){setRoute({name:"product",id:p.id});return;}}
+      if(h.startsWith("cat-")){setRoute({name:"category",slug:h.slice(4)});return;}
+      const map={home:"home",shop:"shop",cart:"cart",checkout:"checkout",wishlist:"wishlist",about:"about",contact:"contact",faq:"faq",shipping:"shipping",returns:"returns",privacy:"privacy",terms:"terms",search:"search"};
+      if(map[h]){setRoute({name:map[h]});return;}
+      setRoute({name:"home"});
+    };
+    parse();
+    window.addEventListener("hashchange",parse);
+    return ()=>window.removeEventListener("hashchange",parse);
+  },[]);
+
+  const go=(r)=>{
+    setRoute(r); setDrawer(false); setSearch(false);
+    let hash="";
+    if(r.name==="product")hash="product-"+r.id;
+    else if(r.name==="category")hash="cat-"+r.slug;
+    else if(r.name!=="home")hash=r.name;
+    if(("#"+hash)!==location.hash){history.pushState(null,"","#"+hash);}
+    window.scrollTo({top:0,behavior:"instant"in document.documentElement.style?"instant":"auto"});
+  };
+
+  const toast=(msg)=>{const id=Date.now()+Math.random();setToasts(t=>[...t,{id,msg}]);setTimeout(()=>setToasts(t=>t.filter(x=>x.id!==id)),2600);};
+
+  const addToCart=(p,qty=1,variant=null)=>{
+    const key=p.id+(variant?("|"+variant):"");
+    setCart(c=>{
+      const ex=c.find(x=>x.key===key);
+      if(ex)return c.map(x=>x.key===key?{...x,qty:x.qty+qty}:x);
+      return [...c,{key,id:p.id,qty,variant}];
+    });
+    toast(`${p.name} added to cart`);
+  };
+  const setQty=(key,qty)=>setCart(c=>qty<=0?c.filter(x=>x.key!==key):c.map(x=>x.key===key?{...x,qty}:x));
+  const removeItem=(key)=>setCart(c=>c.filter(x=>x.key!==key));
+  const clearCart=()=>setCart([]);
+  const toggleWish=(id)=>{
+    setWish(w=>{const has=w.includes(id);toast(has?"Removed from wishlist":"Saved to wishlist");return has?w.filter(x=>x!==id):[...w,id];});
+  };
+
+  const cartCount=cart.reduce((s,x)=>s+x.qty,0);
+  const cartLines=cart.map(x=>({...x,product:byId(x.id)})).filter(x=>x.product);
+  const subtotal=cartLines.reduce((s,x)=>s+x.product.price*x.qty,0);
+  const savings=cartLines.reduce((s,x)=>s+Math.max(0,(x.product.mrp-x.product.price))*x.qty,0);
+  const shipping = subtotal===0?0:(subtotal>=CONFIG.FREE_SHIPPING_THRESHOLD?0:CONFIG.SHIPPING_FLAT);
+  const total=subtotal+shipping;
+
+  const val={route,go,cart,cartLines,cartCount,subtotal,savings,shipping,total,addToCart,setQty,removeItem,clearCart,
+    wish,toggleWish,toasts,toast,drawer,setDrawer,search,setSearch};
+  return <Store.Provider value={val}>{children}</Store.Provider>;
+}
+
+/* =============================== SHARED UI =============================== */
+function Rating({p,size}){
+  return <span className="rating">{p.rating?
+    <><Stars v={p.rating}/><span>{p.rating} ({p.reviewCount})</span></>
+    :<span className="muted" style={size==="lg"?{fontSize:13}:null}>No reviews yet</span>}</span>;
+}
+function Stars({v}){
+  return <span className="stars">{[1,2,3,4,5].map(i=><svg key={i} viewBox="0 0 24 24" className={i<=Math.round(v)?"":"empty"} fill="currentColor"><path d={I.star}/></svg>)}</span>;
+}
+function QtyStepper({qty,onChange}){
+  return <span className="qty">
+    <button onClick={()=>onChange(qty-1)} aria-label="Decrease quantity"><Icon n="minus"/></button>
+    <span className="tnum">{qty}</span>
+    <button onClick={()=>onChange(qty+1)} aria-label="Increase quantity"><Icon n="plus"/></button>
+  </span>;
+}
+
+function ProductCard({p}){
+  const {go,addToCart,wish,toggleWish}=useStore();
+  const saved=wish.includes(p.id);
+  return (
+    <article className="pcard">
+      <div className="pcard__media" onClick={()=>go({name:"product",id:p.id})} style={{cursor:"pointer"}}>
+        <img src={p.images[0]} alt={`${p.brand} ${p.name}`} loading="lazy"/>
+        <div className="pcard__flags">
+          {p.discount>0 && <span className="badge-off">{p.discount}% OFF</span>}
+          {p.isNew && <span className="badge-off badge-new">NEW</span>}
+        </div>
+        <button className={"pcard__wish"+(saved?" on":"")} onClick={(e)=>{e.stopPropagation();toggleWish(p.id);}}
+          aria-label={saved?"Remove from wishlist":"Add to wishlist"} aria-pressed={saved}><Icon n="heart"/></button>
+        {!p.availability && <div className="soldout-veil"><span>Sold out</span></div>}
+      </div>
+      <div className="pcard__body">
+        <span className="pcard__brand">{p.brand}</span>
+        <h3 className="pcard__name" onClick={()=>go({name:"product",id:p.id})} style={{cursor:"pointer"}}>{p.name}</h3>
+        <span className="pcard__meta">{p.cat==="diapers"?`${p.weight} · ${p.pack}`:`${p.size||""}${p.age?" · "+p.age:""}`}</span>
+        <Rating p={p}/>
+        <div className="pcard__price tnum">
+          <span className="now">{fmt(p.price)}</span>
+          {p.discount>0 && <span className="was">{fmt(p.mrp)}</span>}
+        </div>
+        <button className={"btn "+(p.availability?"btn-primary":"btn-ghost")+" btn-sm btn-block pcard__cartbtn"}
+          disabled={!p.availability}
+          onClick={()=>p.availability&&addToCart(p,1,p.cat==="diapers"?p.dSize:null)}>
+          {p.availability?<><Icon n="cart"/>Add to Cart</>:"Notify me"}
+        </button>
+      </div>
+    </article>
+  );
+}
+function ProductGrid({items}){return <div className="pgrid">{items.map(p=><ProductCard key={p.id} p={p}/>)}</div>;}
+
+/* =============================== HEADER / NAV =============================== */
+function AnnouncementBar(){
+  const [open,setOpen]=useState(()=>lsGet("pb_annc",true));
+  if(!open)return null;
+  return <div className="annc">{CONFIG.ANNOUNCEMENT}
+    <button className="close" onClick={()=>{setOpen(false);lsSet("pb_annc",false);}} aria-label="Dismiss"><Icon n="close" style={{width:15,height:15}}/></button>
+  </div>;
+}
+function Header(){
+  const {go,route,cartCount,wish,setDrawer,setSearch}=useStore();
+  const [mob,setMob]=useState(false);
+  const isCat=(s)=>route.name==="category"&&route.slug===s;
+  return (
+    <header className="header">
+      <div className="wrap header__row">
+        <button className="iconbtn hamburger" onClick={()=>setMob(true)} aria-label="Open menu"><Icon n="menu"/></button>
+        <a href="#" onClick={e=>{e.preventDefault();go({name:"home"});}} aria-label="Pure Baby home"><Logo/></a>
+        <nav className="nav">
+          <a href="#cat-baby-food" className={isCat("baby-food")?"active":""} onClick={e=>{e.preventDefault();go({name:"category",slug:"baby-food"});}}>Baby Food</a>
+          <a href="#cat-diapers" className={isCat("diapers")?"active":""} onClick={e=>{e.preventDefault();go({name:"category",slug:"diapers"});}}>Diapers</a>
+          <a href="#cat-skin-bath" className={isCat("skin-bath")?"active":""} onClick={e=>{e.preventDefault();go({name:"category",slug:"skin-bath"});}}>Skin &amp; Bath Care</a>
+          <a href="#shop" className={route.name==="shop"?"active":""} onClick={e=>{e.preventDefault();go({name:"shop"});}}>Shop All</a>
+          <a href="#about" className={route.name==="about"?"active":""} onClick={e=>{e.preventDefault();go({name:"about"});}}>About Us</a>
+        </nav>
+        <div className="header__actions">
+          <button className="iconbtn" onClick={()=>setSearch(true)} aria-label="Search"><Icon n="search"/></button>
+          <button className="iconbtn hide-sm" onClick={()=>go({name:"about"})} aria-label="Account"><Icon n="user"/></button>
+          <button className="iconbtn" onClick={()=>go({name:"wishlist"})} aria-label="Wishlist">
+            <Icon n="heart"/>{wish.length>0&&<span className="countdot">{wish.length}</span>}</button>
+          <button className="iconbtn" onClick={()=>setDrawer(true)} aria-label="Cart">
+            <Icon n="cart"/>{cartCount>0&&<span className="countdot">{cartCount}</span>}</button>
+        </div>
+      </div>
+      {mob&&<MobileMenu close={()=>setMob(false)}/>}
+    </header>
+  );
+}
+function MobileMenu({close}){
+  const {go}=useStore();
+  const item=(label,r)=><a href="#" onClick={e=>{e.preventDefault();go(r);close();}}
+    style={{padding:"15px 4px",borderBottom:"1px solid var(--line)",fontFamily:"var(--serif)",fontSize:19}}>{label}</a>;
+  return (
+    <div className="ovl" onClick={close}>
+      <div style={{background:"var(--surface)",width:"min(340px,86vw)",height:"100%",padding:"20px",display:"flex",flexDirection:"column",boxShadow:"var(--shadow-lg)"}} onClick={e=>e.stopPropagation()}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
+          <Logo small/><button className="iconbtn" onClick={close} aria-label="Close"><Icon n="close"/></button></div>
+        <nav style={{display:"flex",flexDirection:"column"}}>
+          {item("Baby Food",{name:"category",slug:"baby-food"})}
+          {item("Diapers",{name:"category",slug:"diapers"})}
+          {item("Skin & Bath Care",{name:"category",slug:"skin-bath"})}
+          {item("Shop All",{name:"shop"})}
+          {item("About Us",{name:"about"})}
+          {item("Contact",{name:"contact"})}
+          {item("FAQ",{name:"faq"})}
+        </nav>
+        <a className="btn btn-wa btn-block" style={{marginTop:"auto"}} href={waLink(`Hi ${CONFIG.BRAND}, I'd like some help.`)} target="_blank" rel="noopener"><Icon n="wa"/>Chat on WhatsApp</a>
+      </div>
+    </div>
+  );
+}
+function MobileBottomNav(){
+  const {go,route,cartCount,setSearch}=useStore();
+  const A=(name,icon,label,onClick,active)=>(
+    <a href="#" className={active?"active":""} onClick={e=>{e.preventDefault();onClick();}}>
+      <Icon n={icon}/>{label}{name==="cart"&&cartCount>0&&<span className="countdot">{cartCount}</span>}</a>);
+  return <nav className="mbnav">
+    {A("home","home","Home",()=>go({name:"home"}),route.name==="home")}
+    {A("shop","grid","Shop",()=>go({name:"shop"}),route.name==="shop"||route.name==="category")}
+    {A("search","search","Search",()=>setSearch(true))}
+    {A("wish","heart","Wishlist",()=>go({name:"wishlist"}),route.name==="wishlist")}
+    {A("cart","cart","Cart",()=>go({name:"cart"}),route.name==="cart")}
+  </nav>;
+}
+
+/* =============================== SEARCH OVERLAY =============================== */
+function SearchOverlay(){
+  const {search,setSearch,go}=useStore();
+  const [q,setQ]=useState("");
+  const inp=useRef(null);
+  useEffect(()=>{if(search){setQ("");setTimeout(()=>inp.current&&inp.current.focus(),50);}},[search]);
+  if(!search)return null;
+  const term=q.trim().toLowerCase();
+  const results=term?PRODUCTS.filter(p=>(p.name+" "+p.brand+" "+catTitle(p.cat)+" "+(p.type||"")).toLowerCase().includes(term)).slice(0,6):[];
+  const suggestions=["Diapers","Baby lotion","Baby food","Rash cream","Kendamil","Body wash"];
+  const submit=()=>{if(term){setSearch(false);go({name:"search",q});sessionSet(q);}};
+  return (
+    <div className="ovl" onClick={()=>setSearch(false)}>
+      <div className="search-panel" onClick={e=>e.stopPropagation()}>
+        <div className="search-panel__top">
+          <Icon n="search" style={{width:20,height:20,color:"var(--muted)"}}/>
+          <input ref={inp} value={q} onChange={e=>setQ(e.target.value)} placeholder="What are you looking for?"
+            onKeyDown={e=>{if(e.key==="Enter")submit();if(e.key==="Escape")setSearch(false);}}/>
+          <button className="iconbtn" onClick={()=>setSearch(false)} aria-label="Close"><Icon n="close"/></button>
+        </div>
+        <div className="search-panel__body">
+          {!term && <>
+            <p className="eyebrow" style={{margin:"6px 4px 10px"}}>Popular searches</p>
+            <div className="chips">{suggestions.map(s=><button key={s} className="chip" onClick={()=>setQ(s)}>{s}</button>)}</div>
+            <p className="eyebrow" style={{margin:"18px 4px 10px"}}>Browse categories</p>
+            <div className="chips">{CATEGORIES.map(c=><button key={c.slug} className="chip" onClick={()=>{setSearch(false);go({name:"category",slug:c.slug});}}>{c.title}</button>)}</div>
+          </>}
+          {term && results.length===0 && <p className="muted" style={{padding:"20px 8px"}}>No products match “{q}”. Try “diapers”, “lotion” or a brand name.</p>}
+          {results.map(p=>(
+            <div key={p.id} className="sresult" onClick={()=>{setSearch(false);go({name:"product",id:p.id});}} style={{cursor:"pointer"}}>
+              <img src={p.images[0]} alt=""/>
+              <div style={{flex:1}}><div style={{fontSize:11,color:"var(--sage-deep)",fontWeight:600,letterSpacing:".06em",textTransform:"uppercase"}}>{p.brand}</div>
+                <div style={{fontFamily:"var(--serif)",fontSize:15}}>{p.name}</div></div>
+              <div className="tnum" style={{fontWeight:700}}>{fmt(p.price)}</div>
+            </div>
+          ))}
+          {term && results.length>0 && <button className="btn btn-outline btn-block" style={{marginTop:10}} onClick={submit}>See all results for “{q}”</button>}
+        </div>
+      </div>
+    </div>
+  );
+}
+let _lastSearch="";
+const sessionSet=(q)=>{_lastSearch=q;try{sessionStorage.setItem("pb_q",q);}catch(e){}};
+const sessionGet=()=>{try{return sessionStorage.getItem("pb_q")||_lastSearch;}catch(e){return _lastSearch;}};
+
+/* =============================== CART DRAWER =============================== */
+function CartDrawer(){
+  const {drawer,setDrawer,cartLines,subtotal,shipping,total,savings,setQty,removeItem,go,cartCount}=useStore();
+  if(!drawer)return null;
+  const remain=Math.max(0,CONFIG.FREE_SHIPPING_THRESHOLD-subtotal);
+  return (
+    <div className="drawer">
+      <div className="drawer__scrim" onClick={()=>setDrawer(false)}/>
+      <div className="drawer__panel" role="dialog" aria-label="Shopping cart">
+        <div className="drawer__head"><h3 style={{fontSize:20}}>Your Cart {cartCount>0&&<span className="muted" style={{fontFamily:"var(--sans)",fontSize:14}}>({cartCount})</span>}</h3>
+          <button className="iconbtn" onClick={()=>setDrawer(false)} aria-label="Close"><Icon n="close"/></button></div>
+        {cartLines.length===0?
+          <div className="drawer__body"><div className="empty"><Icon n="cart"/><p>Your cart is empty.</p>
+            <button className="btn btn-primary" style={{marginTop:14}} onClick={()=>{setDrawer(false);go({name:"shop"});}}>Start shopping</button></div></div>
+        :<>
+          <div className="drawer__body">
+            {remain>0
+              ? <div className="ship-prog">You're <b>{fmt(remain)}</b> away from free shipping<div className="bar"><i style={{width:`${Math.min(100,subtotal/CONFIG.FREE_SHIPPING_THRESHOLD*100)}%`}}/></div></div>
+              : <div className="ship-prog" style={{display:"flex",gap:8,alignItems:"center"}}><Icon n="check" style={{width:18,height:18,color:"var(--success)"}}/><b>You've unlocked free shipping!</b></div>}
+            {cartLines.map(l=><CartLine key={l.key} l={l} setQty={setQty} removeItem={removeItem}/>)}
+          </div>
+          <div className="drawer__foot">
+            {savings>0&&<div className="srow" style={{color:"var(--success)"}}><span>You save</span><span className="tnum">−{fmt(savings)}</span></div>}
+            <div className="srow"><span>Subtotal</span><span className="tnum">{fmt(subtotal)}</span></div>
+            <div className="srow"><span>Shipping</span><span className="tnum">{shipping===0?"Free":fmt(shipping)}</span></div>
+            <div className="srow total"><span>Total</span><span className="tnum">{fmt(total)}</span></div>
+            <button className="btn btn-primary btn-block btn-lg" onClick={()=>go({name:"checkout"})}>Proceed to Checkout</button>
+            <button className="btn btn-ghost btn-block btn-sm" onClick={()=>go({name:"cart"})}>View full cart</button>
+          </div>
+        </>}
+      </div>
+    </div>
+  );
+}
+function CartLine({l,setQty,removeItem}){
+  const p=l.product;
+  return <div className="citem">
+    <img src={p.images[0]} alt=""/>
+    <div>
+      <div style={{fontSize:11,color:"var(--sage-deep)",fontWeight:600,letterSpacing:".05em",textTransform:"uppercase"}}>{p.brand}</div>
+      <div style={{fontFamily:"var(--serif)",fontSize:15,lineHeight:1.2}}>{p.name}</div>
+      {l.variant&&<div className="muted" style={{fontSize:12}}>Size: {l.variant}</div>}
+      <div style={{display:"flex",alignItems:"center",gap:12,marginTop:8}}>
+        <QtyStepper qty={l.qty} onChange={q=>setQty(l.key,q)}/>
+        <button className="linkx" onClick={()=>removeItem(l.key)}>Remove</button>
+      </div>
+    </div>
+    <div className="tnum" style={{fontWeight:700,textAlign:"right"}}>{fmt(p.price*l.qty)}
+      {p.discount>0&&<div className="muted" style={{fontSize:12,fontWeight:400,textDecoration:"line-through"}}>{fmt(p.mrp*l.qty)}</div>}</div>
+  </div>;
+}
+
+/* =============================== HOME =============================== */
+function Home(){
+  const {go}=useStore();
+  const featured=PRODUCTS.filter(p=>p.featured).slice(0,8);
+  return (
+    <div>
+      {/* hero */}
+      <section className="hero">
+        <div className="wrap hero__grid">
+          <div>
+            <span className="hero__eyebrow eyebrow"><Icon n="leaf" style={{width:15,height:15}}/> {CONFIG.BRAND} · {CONFIG.DOMAIN}</span>
+            <h1>Everything your baby needs. <span style={{color:"var(--sage-deep)"}}>Nothing they don't.</span></h1>
+            <p className="lead">Discover thoughtfully selected essentials for feeding, changing and everyday baby care — chosen with the same care you give your little one.</p>
+            <div className="hero__cta">
+              <button className="btn btn-primary btn-lg" onClick={()=>go({name:"shop"})}><Icon n="cart"/>Shop Now</button>
+              <button className="btn btn-outline btn-lg" onClick={()=>{document.getElementById("cats").scrollIntoView({behavior:"smooth"});}}>Explore Baby Care</button>
+            </div>
+            <div className="hero__trust">
+              <span><b>Free shipping</b> over {fmt(CONFIG.FREE_SHIPPING_THRESHOLD)}</span>
+              <span><b>Authentic</b> trusted brands</span>
+              <span><b>WhatsApp</b> support</span>
+            </div>
+          </div>
+          <div className="hero__art">
+            <img src={heroImage()} alt="Gentle baby-care essentials from Pure Baby"/>
+            <div className="hero__float" style={{top:18,left:18}}><Icon n="shield"/><span><b>Carefully selected</b><br/>with baby in mind</span></div>
+            <div className="hero__float" style={{bottom:18,right:18}}><Icon n="leaf"/><span><b>Gentle</b> everyday care</span></div>
+          </div>
+        </div>
+      </section>
+
+      {/* categories */}
+      <section className="section" id="cats">
+        <div className="wrap">
+          <div className="shead"><div><span className="eyebrow">Shop by need</span><h2 style={{marginTop:8}}>Care for every little moment</h2></div></div>
+          <div className="catgrid">
+            {CATEGORIES.map(c=>(
+              <a key={c.slug} className="catcard" href={"#cat-"+c.slug} onClick={e=>{e.preventDefault();go({name:"category",slug:c.slug});}}>
+                <img src={c.img} alt=""/>
+                <div><h3>{c.title}</h3><p>{c.tag}</p><span className="go">{c.cta}<Icon n="right"/></span></div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* trust */}
+      <section className="band"><div className="wrap section" style={{paddingBlock:44}}>
+        <div className="trustgrid">
+          <Trust icon="leaf" h="Carefully Selected" p="Products chosen with baby care in mind, across feeding, changing and skin care."/>
+          <Trust icon="shield" h="Authentic Products" p="We source genuine products from trusted, well-known baby-care brands."/>
+          <Trust icon="check" h="Parent-Friendly Shopping" p="Simple ordering, clear sizing and transparent product information."/>
+          <Trust icon="headset" h="Support When You Need It" p="Quick, friendly help over WhatsApp whenever you have a question."/>
+        </div>
+      </div></section>
+
+      {/* featured */}
+      <section className="section"><div className="wrap">
+        <div className="shead">
+          <div><span className="eyebrow">Loved by parents</span><h2 style={{marginTop:8}}>Parents' Picks</h2>
+            <p>A handpicked edit of essentials parents come back to, across all three ranges.</p></div>
+          <a className="seeall" href="#shop" onClick={e=>{e.preventDefault();go({name:"shop"});}}>View all<Icon n="right"/></a>
+        </div>
+        <ProductGrid items={featured}/>
+      </div></section>
+
+      {/* editorial band */}
+      <section className="band"><div className="wrap section band__grid">
+        <div>
+          <span className="eyebrow">Our promise</span>
+          <p className="quote" style={{marginTop:14}}>“Made for little moments — and the people who care about them the most.”</p>
+          <p className="muted" style={{marginTop:16,maxWidth:"46ch"}}>Pure Baby exists to make it easier to find gentle, dependable essentials without second-guessing every label. We keep the range focused, the information clear, and help a message away.</p>
+          <button className="btn btn-outline" style={{marginTop:20}} onClick={()=>go({name:"about"})}>About Pure Baby<Icon n="right"/></button>
+        </div>
+        <div className="card" style={{padding:26,display:"grid",gap:18}}>
+          {[["drop","Gentle by design","Formulas and materials chosen for delicate skin and tiny tummies."],
+            ["box","Right-sized for you","Clear sizes, weights and pack counts so you order the right thing."],
+            ["headset","Help, the easy way","Questions about a product? Message us on WhatsApp and we'll help."]].map(([ic,h,p])=>(
+            <div key={h} style={{display:"flex",gap:14,alignItems:"flex-start"}}>
+              <span className="trust__ic"><Icon n={ic}/></span>
+              <div><h4 style={{fontFamily:"var(--serif)",fontSize:16}}>{h}</h4><p className="muted" style={{fontSize:13,marginTop:2}}>{p}</p></div>
+            </div>
+          ))}
+        </div>
+      </div></section>
+    </div>
+  );
+}
+function Trust({icon,h,p}){return <div className="trust"><span className="trust__ic"><Icon n={icon}/></span><div><h4>{h}</h4><p>{p}</p></div></div>;}
+
+/* =============================== COLLECTION (shop / category / search) =============================== */
+function Collection({mode,slug,query}){
+  const {go}=useStore();
+  const [sort,setSort]=useState("featured");
+  const [filters,setFilters]=useState({brand:[],age:[],type:[],size:[],inStock:false,price:null});
+  const [showFilter,setShowFilter]=useState(false);
+  useEffect(()=>{setFilters({brand:[],age:[],type:[],size:[],inStock:false,price:null});setSort("featured");},[mode,slug,query]);
+
+  let pool = mode==="category"?PRODUCTS.filter(p=>p.cat===slug)
+    : mode==="search"?PRODUCTS.filter(p=>{const t=(query||"").toLowerCase();return (p.name+" "+p.brand+" "+catTitle(p.cat)+" "+(p.type||"")+" "+(p.concern||"")).toLowerCase().includes(t);})
+    : PRODUCTS;
+
+  // facet values
+  const facet=(key,get)=>[...new Set(pool.map(get).filter(Boolean))].sort();
+  const brands=facet("brand",p=>p.brand);
+  const ages=facet("age",p=>p.age);
+  const types=facet("type",p=>p.type);
+  const sizes=facet("size",p=>p.cat==="diapers"?p.dSize:null);
+  const priceRanges=[["Under ₹1,000",0,1000],["₹1,000–2,500",1000,2500],["₹2,500–6,000",2500,6000],["₹6,000+",6000,1e9]];
+
+  const passes=(p)=>{
+    if(filters.brand.length&&!filters.brand.includes(p.brand))return false;
+    if(filters.age.length&&!filters.age.includes(p.age))return false;
+    if(filters.type.length&&!filters.type.includes(p.type))return false;
+    if(filters.size.length&&!filters.size.includes(p.dSize))return false;
+    if(filters.inStock&&!p.availability)return false;
+    if(filters.price){const[,lo,hi]=filters.price;if(!(p.price>=lo&&p.price<hi))return false;}
+    return true;
+  };
+  let items=pool.filter(passes);
+  const sorters={
+    featured:(a,b)=>(b.featured-a.featured)||(b.discount-a.discount),
+    newest:(a,b)=>(b.isNew-a.isNew),
+    "price-asc":(a,b)=>a.price-b.price,
+    "price-desc":(a,b)=>b.price-a.price,
+    discount:(a,b)=>b.discount-a.discount,
+    rating:(a,b)=>(b.rating||0)-(a.rating||0),
+  };
+  items=[...items].sort(sorters[sort]);
+
+  const toggle=(key,v)=>setFilters(f=>({...f,[key]:f[key].includes(v)?f[key].filter(x=>x!==v):[...f[key],v]}));
+  const activeCount=filters.brand.length+filters.age.length+filters.type.length+filters.size.length+(filters.inStock?1:0)+(filters.price?1:0);
+  const title=mode==="category"?catTitle(slug):mode==="search"?`Search: “${query}”`:"Shop All";
+  const blurb=mode==="category"?(CATEGORIES.find(c=>c.slug===slug)||{}).tag
+    :mode==="search"?`${items.length} result${items.length!==1?"s":""} for your search`:"Every Pure Baby essential in one place.";
+
+  const FilterPanel=()=>(
+    <aside className={"filter"+(showFilter?"":" closed")}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
+        <h3 style={{fontSize:18}}>Filters {activeCount>0&&<span className="pill" style={{marginLeft:6}}>{activeCount}</span>}</h3>
+        <div style={{display:"flex",gap:8}}>
+          {activeCount>0&&<button className="linkx" onClick={()=>setFilters({brand:[],age:[],type:[],size:[],inStock:false,price:null})}>Clear all</button>}
+          <button className="iconbtn filter-toggle" onClick={()=>setShowFilter(false)} aria-label="Close filters"><Icon n="close"/></button>
+        </div>
+      </div>
+      <FGroup title="Availability">
+        <label className="fopt"><input type="checkbox" checked={filters.inStock} onChange={()=>setFilters(f=>({...f,inStock:!f.inStock}))}/>In stock only</label>
+      </FGroup>
+      <FGroup title="Price">
+        {priceRanges.map(r=><label key={r[0]} className="fopt"><input type="radio" name="price" checked={filters.price&&filters.price[0]===r[0]}
+          onChange={()=>setFilters(f=>({...f,price:r}))}/>{r[0]}</label>)}
+        {filters.price&&<button className="linkx" onClick={()=>setFilters(f=>({...f,price:null}))} style={{marginTop:4}}>Reset price</button>}
+      </FGroup>
+      {brands.length>1&&<FGroup title="Brand">{brands.map(b=><Opt key={b} label={b} n={pool.filter(p=>p.brand===b).length} on={filters.brand.includes(b)} onClick={()=>toggle("brand",b)}/>)}</FGroup>}
+      {sizes.length>0&&<FGroup title="Diaper size">{sizes.map(s=><Opt key={s} label={s} n={pool.filter(p=>p.dSize===s).length} on={filters.size.includes(s)} onClick={()=>toggle("size",s)}/>)}</FGroup>}
+      {ages.length>1&&<FGroup title="Age">{ages.map(a=><Opt key={a} label={a} n={pool.filter(p=>p.age===a).length} on={filters.age.includes(a)} onClick={()=>toggle("age",a)}/>)}</FGroup>}
+      {types.length>1&&<FGroup title="Product type">{types.map(t=><Opt key={t} label={t} n={pool.filter(p=>p.type===t).length} on={filters.type.includes(t)} onClick={()=>toggle("type",t)}/>)}</FGroup>}
+      <div className="filter-toggle" style={{marginTop:16}}><button className="btn btn-primary btn-block" onClick={()=>setShowFilter(false)}>Show {items.length} products</button></div>
+    </aside>
+  );
+
+  return (
+    <div className="wrap section" style={{paddingBlock:34}}>
+      <div className="breadcrumb">
+        <a href="#" onClick={e=>{e.preventDefault();go({name:"home"});}}>Home</a><Icon n="right"/>
+        <span>{title}</span>
+      </div>
+      <div style={{marginBottom:22}}>
+        <h1 style={{fontSize:"clamp(1.8rem,3.4vw,2.6rem)"}}>{title}</h1>
+        {blurb&&<p className="muted" style={{marginTop:6}}>{blurb}</p>}
+      </div>
+
+      {mode==="search"&&items.length===0
+        ? <div className="empty"><Icon n="search"/><p>No products found. Try a different search, or browse a category.</p>
+            <div className="chips" style={{justifyContent:"center",marginTop:16}}>{CATEGORIES.map(c=><button key={c.slug} className="chip" onClick={()=>go({name:"category",slug:c.slug})}>{c.title}</button>)}</div></div>
+        : <div className="col-layout">
+            <FilterPanel/>
+            <div>
+              <div className="col-topbar">
+                <button className="btn btn-outline btn-sm filter-toggle" onClick={()=>setShowFilter(true)}><Icon n="filter"/>Filters{activeCount>0&&` (${activeCount})`}</button>
+                <span className="muted" style={{fontSize:13}}>{items.length} product{items.length!==1?"s":""}</span>
+                <label style={{display:"flex",alignItems:"center",gap:8,fontSize:13}} className="muted">Sort
+                  <select className="sel" value={sort} onChange={e=>setSort(e.target.value)}>
+                    <option value="featured">Featured</option><option value="newest">Newest</option>
+                    <option value="price-asc">Price — Low to High</option><option value="price-desc">Price — High to Low</option>
+                    <option value="discount">Discount</option><option value="rating">Customer Rating</option>
+                  </select>
+                </label>
+              </div>
+              {items.length===0?<div className="empty"><Icon n="filter"/><p>No products match these filters.</p>
+                <button className="btn btn-outline" style={{marginTop:12}} onClick={()=>setFilters({brand:[],age:[],type:[],size:[],inStock:false,price:null})}>Clear filters</button></div>
+                :<ProductGrid items={items}/>}
+            </div>
+          </div>}
+    </div>
+  );
+}
+function FGroup({title,children}){return <div className="fgroup"><h4>{title}</h4>{children}</div>;}
+function Opt({label,n,on,onClick}){return <label className="fopt"><input type="checkbox" checked={on} onChange={onClick}/>{label}<span className="n">{n}</span></label>;}
+
+/* =============================== PRODUCT DETAIL =============================== */
+function ProductPage({id}){
+  const {go,addToCart,wish,toggleWish}=useStore();
+  const p=byId(id);
+  const [img,setImg]=useState(0);
+  const [qty,setQty]=useState(1);
+  const [variant,setVariant]=useState(p&&p.cat==="diapers"?p.dSize:null);
+  useEffect(()=>{setImg(0);setQty(1);setVariant(p&&p.cat==="diapers"?p.dSize:null);window.scrollTo(0,0);},[id]);
+  if(!p)return <div className="wrap section"><p>Product not found.</p></div>;
+  const c=content(p);
+  const saved=wish.includes(p.id);
+  const related=PRODUCTS.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,4);
+  const waMsg=`Hi ${CONFIG.BRAND}, I have a question about ${p.name}.`;
+  // sibling diaper sizes for size selection
+  const siblings=p.cat==="diapers"?PRODUCTS.filter(x=>x.brand===p.brand&&x.cat==="diapers"):[];
+
+  return (
+    <div className="wrap section" style={{paddingBlock:30}}>
+      <div className="breadcrumb">
+        <a href="#" onClick={e=>{e.preventDefault();go({name:"home"});}}>Home</a><Icon n="right"/>
+        <a href={"#cat-"+p.cat} onClick={e=>{e.preventDefault();go({name:"category",slug:p.cat});}}>{catTitle(p.cat)}</a><Icon n="right"/>
+        <span>{p.name}</span>
+      </div>
+
+      <div className="pdp">
+        {/* gallery */}
+        <div>
+          <div className="gallery__main"><img src={p.images[img]} alt={`${p.brand} ${p.name}`}/></div>
+          <div className="gallery__thumbs">
+            {p.images.map((src,i)=><button key={i} className={i===img?"on":""} onClick={()=>setImg(i)} aria-label={`View image ${i+1}`}><img src={src} alt=""/></button>)}
+          </div>
+        </div>
+
+        {/* info */}
+        <div>
+          <span className="pcard__brand">{p.brand}</span>
+          <h1 className="pdp__title">{p.name}</h1>
+          <div style={{display:"flex",gap:14,alignItems:"center",flexWrap:"wrap"}}>
+            <Rating p={p} size="lg"/>
+            {p.availability?<span className="pill" style={{background:"var(--success-soft)",color:"var(--success)"}}><Icon n="check" style={{width:13,height:13}}/>In stock</span>
+              :<span className="pill" style={{background:"var(--danger-soft)",color:"var(--danger)"}}>Sold out</span>}
+          </div>
+          <div className="pdp__price tnum">
+            <span className="now">{fmt(p.price)}</span>
+            {p.discount>0&&<><span className="was">{fmt(p.mrp)}</span><span className="badge-off">{p.discount}% OFF</span></>}
+          </div>
+          <p className="muted" style={{fontSize:12}}>Inclusive of all taxes · illustrative prototype pricing</p>
+
+          {/* spec tiles */}
+          <div className="spec-tiles">
+            {p.cat==="diapers"?<>
+              <Tile k="Baby weight" v={p.weight}/><Tile k="Diaper size" v={p.dSize}/>
+              <Tile k="Pack quantity" v={p.pack}/><Tile k="Diaper type" v={p.diaperType}/>
+              <Tile k="Wetness indicator" v={p.wetness?"Yes":"—"}/><Tile k="Fit" v="True to size"/>
+            </>:p.cat==="baby-food"?<>
+              <Tile k="Recommended age" v={p.age}/><Tile k="Quantity" v={p.size}/>
+              <Tile k="Type" v={p.type}/><Tile k="Origin" v={p.origin}/>
+            </>:<>
+              <Tile k="Suitable age" v={p.age}/><Tile k="Size" v={p.size}/>
+              <Tile k="Product type" v={p.type}/><Tile k="Skin concern" v={p.concern}/>
+            </>}
+          </div>
+
+          {/* diaper size selection */}
+          {siblings.length>1 && <div style={{margin:"6px 0 4px"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+              <span style={{fontSize:12.5,fontWeight:600}}>Select size (by baby weight)</span>
+              <button className="linkx" onClick={()=>document.getElementById("sizechart").scrollIntoView({behavior:"smooth"})}>Not sure which size?</button>
+            </div>
+            <div className="sizepick">
+              {siblings.sort((a,b)=>a.price-b.price===0?0:0).map(s=>(
+                <button key={s.id} className={s.id===p.id?"on":""} disabled={!s.availability} onClick={()=>go({name:"product",id:s.id})}>
+                  {s.dSize}<small>{s.weight}</small></button>))}
+            </div>
+          </div>}
+
+          {/* buy row */}
+          <div className="buyrow">
+            <QtyStepper qty={qty} onChange={q=>setQty(Math.max(1,q))}/>
+            <button className="btn btn-primary btn-lg" style={{flex:1}} disabled={!p.availability}
+              onClick={()=>addToCart(p,qty,variant)}><Icon n="cart"/>Add to Cart</button>
+          </div>
+          <div style={{display:"flex",gap:12}}>
+            <button className="btn btn-peach btn-lg" style={{flex:1}} disabled={!p.availability}
+              onClick={()=>{addToCart(p,qty,variant);go({name:"checkout"});}}>Buy Now</button>
+            <button className={"btn btn-lg "+(saved?"btn-ghost":"btn-outline")} onClick={()=>toggleWish(p.id)} aria-pressed={saved}>
+              <Icon n="heart"/>{saved?"Saved":"Wishlist"}</button>
+          </div>
+          <a className="btn btn-wa btn-block btn-lg" style={{marginTop:12}} href={waLink(waMsg)} target="_blank" rel="noopener">
+            <Icon n="wa"/>Have questions about this product? Chat with us</a>
+
+          {p.cat==="baby-food"&&<div className="notice" style={{marginTop:16}}><b>Important:</b> Always check the product packaging for the latest ingredient, allergen and nutritional information.</div>}
+          {p.cat==="skin-bath"&&<div className="notice sage" style={{marginTop:16}}>This is a personal-care product and is not intended to treat, cure or prevent any medical condition. Patch-test before first use on sensitive skin.</div>}
+        </div>
+      </div>
+
+      {/* details accordions */}
+      <div style={{maxWidth:820,margin:"46px auto 0"}}>
+        <Accordion title="Product Description" open><p>{c.description}</p></Accordion>
+        <Accordion title="Key Benefits"><ul>{c.benefits.map((b,i)=><li key={i}>{b}</li>)}</ul></Accordion>
+        <Accordion title="Product Specifications">
+          <dl className="kv">
+            <dt>Brand</dt><dd>{p.brand}</dd>
+            {p.cat==="diapers"?<>
+              <dt>Baby weight</dt><dd>{p.weight}</dd><dt>Size</dt><dd>{p.dSize}</dd>
+              <dt>Pack</dt><dd>{p.pack}</dd><dt>Type</dt><dd>{p.diaperType}</dd>
+              <dt>Wetness indicator</dt><dd>{p.wetness?"Yes":"—"}</dd>
+            </>:<>
+              <dt>Size / quantity</dt><dd>{p.size}</dd><dt>Recommended age</dt><dd>{p.age}</dd>
+              <dt>Type</dt><dd>{p.type}</dd>{p.concern&&<><dt>Concern</dt><dd>{p.concern}</dd></>}
+            </>}
+            <dt>Origin</dt><dd>{c.origin}</dd>
+          </dl>
+        </Accordion>
+        <Accordion title={p.cat==="baby-food"?"Ingredients & Nutrition":"Ingredients"}>
+          <ul>{c.ingredients.map((x,i)=><li key={i}>{x}</li>)}</ul>
+          {p.cat==="baby-food"&&<p style={{marginTop:8}}>{c.nutrition}</p>}
+        </Accordion>
+        <Accordion title="How to Use"><p>{c.howToUse}</p></Accordion>
+        <Accordion title="Safety Information"><p>{c.safety}</p></Accordion>
+        {p.cat==="diapers"&&<Accordion title="Not sure which size? — Size guide" open>
+          <table className="sizechart" id="sizechart"><thead><tr><th>Size</th><th>Baby weight</th></tr></thead>
+            <tbody>{DIAPER_SIZES.map(s=><tr key={s.label}><td>{s.label}</td><td className="tnum">{s.range}</td></tr>)}</tbody></table>
+          <p className="muted" style={{fontSize:12.5,marginTop:8}}>Weight ranges are indicative; always check the individual pack, as they vary by brand and style.</p>
+        </Accordion>}
+        <Accordion title="Origin & Manufacturer"><p>{c.manufacturer}</p><p style={{marginTop:6}}>Country of origin: {c.origin}.</p></Accordion>
+        <Accordion title="Shipping Information"><p>{c.shipping}</p></Accordion>
+        <Accordion title="Return / Refund Information"><p>{c.returns}</p></Accordion>
+        <Accordion title="Frequently Asked Questions">
+          <p style={{fontWeight:600}}>Is this product authentic?</p><p>Yes — we source from trusted brands. Always check pack seals and batch details on delivery.</p>
+          <p style={{fontWeight:600,marginTop:10}}>Can I return it?</p><p>Unopened items within 7 days. Opened baby food, diapers and personal-care items can't be returned for hygiene reasons unless damaged.</p>
+          <p style={{fontWeight:600,marginTop:10}}>How do I get help choosing?</p><p>Message us on WhatsApp — we're happy to help you pick the right option.</p>
+        </Accordion>
+        <Accordion title="Customer Reviews"><div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:8,padding:"10px 0"}}>
+          <Stars v={0}/><p className="muted">No reviews yet. Be the first to review this product.</p></div></Accordion>
+      </div>
+
+      {/* related */}
+      {related.length>0&&<div style={{marginTop:50}}>
+        <div className="shead"><h2 style={{fontSize:"1.7rem"}}>You may also like</h2>
+          <a className="seeall" href={"#cat-"+p.cat} onClick={e=>{e.preventDefault();go({name:"category",slug:p.cat});}}>View {catTitle(p.cat)}<Icon n="right"/></a></div>
+        <ProductGrid items={related}/>
+      </div>}
+    </div>
+  );
+}
+function Tile({k,v}){return <div className="spec-tile"><div className="k">{k}</div><div className="v">{v||"—"}</div></div>;}
+function Accordion({title,children,open=false}){
+  const [o,setO]=useState(open);
+  return <div className="acc" style={{borderTop:"none"}}><div className="acc__row">
+    <button className="acc__btn" aria-expanded={o} onClick={()=>setO(!o)}>{title}<Icon n="chevron"/></button>
+    {o&&<div className="acc__panel">{children}</div>}
+  </div></div>;
+}
+
+/* =============================== CART PAGE =============================== */
+function CartPage(){
+  const {cartLines,subtotal,shipping,total,savings,setQty,removeItem,go,cartCount}=useStore();
+  if(cartLines.length===0)return <div className="wrap section"><div className="empty"><Icon n="cart"/>
+    <h2 style={{fontFamily:"var(--serif)",marginBottom:6}}>Your cart is empty</h2><p>Add some gentle essentials to get started.</p>
+    <button className="btn btn-primary" style={{marginTop:16}} onClick={()=>go({name:"shop"})}>Start shopping</button></div></div>;
+  const remain=Math.max(0,CONFIG.FREE_SHIPPING_THRESHOLD-subtotal);
+  return <div className="wrap section" style={{paddingBlock:34}}>
+    <div className="breadcrumb"><a href="#" onClick={e=>{e.preventDefault();go({name:"home"});}}>Home</a><Icon n="right"/><span>Cart</span></div>
+    <h1 style={{fontSize:"2rem",marginBottom:22}}>Shopping Cart <span className="muted" style={{fontFamily:"var(--sans)",fontSize:16}}>({cartCount} item{cartCount!==1?"s":""})</span></h1>
+    <div className="co-grid">
+      <div className="card" style={{padding:"6px 22px"}}>
+        {cartLines.map((l,i)=><div key={l.key} style={{padding:"18px 0",borderBottom:i<cartLines.length-1?"1px solid var(--line)":"none"}}>
+          <CartLine l={l} setQty={setQty} removeItem={removeItem}/></div>)}
+      </div>
+      <div className="card" style={{padding:22,position:"sticky",top:"calc(var(--header-h) + 16px)"}}>
+        <h3 style={{fontSize:19,marginBottom:16}}>Order Summary</h3>
+        {remain>0
+          ?<div className="ship-prog" style={{marginBottom:14}}>You're <b>{fmt(remain)}</b> away from free shipping<div className="bar"><i style={{width:`${Math.min(100,subtotal/CONFIG.FREE_SHIPPING_THRESHOLD*100)}%`}}/></div></div>
+          :<div className="ship-prog" style={{marginBottom:14,display:"flex",gap:8,alignItems:"center"}}><Icon n="check" style={{width:18,height:18,color:"var(--success)"}}/><b>Free shipping unlocked</b></div>}
+        <div style={{display:"flex",flexDirection:"column",gap:10}}>
+          <div className="srow"><span>Subtotal</span><span className="tnum">{fmt(subtotal)}</span></div>
+          {savings>0&&<div className="srow" style={{color:"var(--success)"}}><span>Discount savings</span><span className="tnum">−{fmt(savings)}</span></div>}
+          <div className="srow"><span>Shipping</span><span className="tnum">{shipping===0?"Free":fmt(shipping)}</span></div>
+          <div className="srow total"><span>Grand Total</span><span className="tnum">{fmt(total)}</span></div>
+        </div>
+        <button className="btn btn-primary btn-block btn-lg" style={{marginTop:16}} onClick={()=>go({name:"checkout"})}>Proceed to Checkout</button>
+        <button className="btn btn-ghost btn-block btn-sm" style={{marginTop:8}} onClick={()=>go({name:"shop"})}>Continue shopping</button>
+      </div>
+    </div>
+  </div>;
+}
+
+/* =============================== CHECKOUT =============================== */
+function Checkout(){
+  const {cartLines,subtotal,shipping,total,savings,clearCart,go}=useStore();
+  const [pay,setPay]=useState("upi");
+  const [placed,setPlaced]=useState(null);
+  const [form,setForm]=useState({name:"",mobile:"",email:"",address:"",apartment:"",city:"",state:"",pin:""});
+  const [errors,setErrors]=useState({});
+  const set=(k,v)=>setForm(f=>({...f,[k]:v}));
+  if(placed)return <OrderConfirmed order={placed}/>;
+  if(cartLines.length===0)return <div className="wrap section"><div className="empty"><Icon n="cart"/><p>Your cart is empty.</p>
+    <button className="btn btn-primary" style={{marginTop:14}} onClick={()=>go({name:"shop"})}>Shop now</button></div></div>;
+  const validate=()=>{
+    const e={};
+    if(!form.name.trim())e.name="Please enter your name";
+    if(!/^\d{10}$/.test(form.mobile.replace(/\D/g,"")))e.mobile="Enter a valid 10-digit mobile";
+    if(!/^\S+@\S+\.\S+$/.test(form.email))e.email="Enter a valid email";
+    if(!form.address.trim())e.address="Please enter your address";
+    if(!form.city.trim())e.city="Required";
+    if(!form.state.trim())e.state="Required";
+    if(!/^\d{6}$/.test(form.pin))e.pin="6-digit PIN";
+    setErrors(e);return Object.keys(e).length===0;
+  };
+  const placeOrder=()=>{
+    if(!validate()){document.querySelector(".field.err")&&document.querySelector(".field.err").scrollIntoView({behavior:"smooth",block:"center"});return;}
+    const order={id:"PB"+Date.now().toString().slice(-8),total,pay,name:form.name,items:cartLines.length,email:form.email};
+    clearCart();setPlaced(order);
+  };
+  const F=(k,label,props={})=>(
+    <div className={"field"+(errors[k]?" err":"")}>
+      <label htmlFor={"f-"+k}>{label}</label>
+      <input id={"f-"+k} value={form[k]} onChange={e=>set(k,e.target.value)} {...props}/>
+      {errors[k]&&<span className="msg">{errors[k]}</span>}
+    </div>
+  );
+  return <div className="wrap section" style={{paddingBlock:34}}>
+    <div className="breadcrumb"><a href="#" onClick={e=>{e.preventDefault();go({name:"cart"});}}>Cart</a><Icon n="right"/><span>Checkout</span></div>
+    <h1 style={{fontSize:"2rem",marginBottom:8}}>Checkout</h1>
+    <div className="notice sage" style={{marginBottom:22,maxWidth:640}}>This is a prototype checkout — <b>no real payment is processed</b> and no order is actually placed.</div>
+    <div className="co-grid">
+      <div>
+        <div className="card" style={{padding:24,marginBottom:20}}>
+          <h3 style={{fontSize:18,marginBottom:16}}>Contact & Delivery</h3>
+          {F("name","Full Name")}
+          <div className="grid2">{F("mobile","Mobile Number",{inputMode:"numeric",placeholder:"10-digit number"})}{F("email","Email",{type:"email"})}</div>
+          {F("address","Address (House no., Street, Area)")}
+          {F("apartment","Apartment / Landmark (optional)")}
+          <div className="grid2">{F("city","City")}{F("state","State")}</div>
+          <div className="grid2">{F("pin","PIN Code",{inputMode:"numeric",placeholder:"6-digit"})}<div/></div>
+        </div>
+        <div className="card" style={{padding:24}}>
+          <h3 style={{fontSize:18,marginBottom:16}}>Payment Method</h3>
+          <div className="pay">
+            {[["upi","UPI","GPay · PhonePe · Paytm"],["card","Credit / Debit Card","Visa · Mastercard · RuPay"],
+              ["netbanking","Net Banking","All major banks"],["cod","Cash on Delivery","Pay when it arrives"]].map(([v,l,b])=>(
+              <label key={v} className={"payopt"+(pay===v?" on":"")}>
+                <input type="radio" name="pay" checked={pay===v} onChange={()=>setPay(v)}/>
+                <span style={{fontWeight:600}}>{l}</span><span className="badges">{b}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="card" style={{padding:22,position:"sticky",top:"calc(var(--header-h) + 16px)"}}>
+        <h3 style={{fontSize:18,marginBottom:14}}>Your Order</h3>
+        <div style={{display:"flex",flexDirection:"column",gap:12,maxHeight:280,overflow:"auto",marginBottom:14}}>
+          {cartLines.map(l=><div key={l.key} style={{display:"flex",gap:10,alignItems:"center"}}>
+            <img src={l.product.images[0]} alt="" style={{width:46,height:46,borderRadius:9,objectFit:"cover"}}/>
+            <div style={{flex:1,fontSize:13}}><div style={{fontFamily:"var(--serif)",lineHeight:1.2}}>{l.product.name}</div>
+              <span className="muted">Qty {l.qty}{l.variant?` · ${l.variant}`:""}</span></div>
+            <span className="tnum" style={{fontWeight:600,fontSize:13}}>{fmt(l.product.price*l.qty)}</span>
+          </div>)}
+        </div>
+        <div style={{display:"flex",flexDirection:"column",gap:9,borderTop:"1px solid var(--line)",paddingTop:14}}>
+          <div className="srow"><span>Subtotal</span><span className="tnum">{fmt(subtotal)}</span></div>
+          {savings>0&&<div className="srow" style={{color:"var(--success)"}}><span>You save</span><span className="tnum">−{fmt(savings)}</span></div>}
+          <div className="srow"><span>Shipping</span><span className="tnum">{shipping===0?"Free":fmt(shipping)}</span></div>
+          <div className="srow total"><span>Total</span><span className="tnum">{fmt(total)}</span></div>
+        </div>
+        <button className="btn btn-primary btn-block btn-lg" style={{marginTop:16}} onClick={placeOrder}>Place Order · {fmt(total)}</button>
+        <p className="muted" style={{fontSize:11.5,textAlign:"center",marginTop:10}}>By placing this order you agree to Pure Baby's Terms. Prototype only.</p>
+      </div>
+    </div>
+  </div>;
+}
+function OrderConfirmed({order}){
+  const {go}=useStore();
+  return <div className="wrap section"><div className="card" style={{maxWidth:560,margin:"0 auto",padding:"44px 30px",textAlign:"center"}}>
+    <div style={{width:66,height:66,borderRadius:"50%",background:"var(--success-soft)",color:"var(--success)",display:"grid",placeItems:"center",margin:"0 auto 18px"}}>
+      <Icon n="check" style={{width:34,height:34}}/></div>
+    <h1 style={{fontSize:"1.9rem"}}>Thank you for your order!</h1>
+    <p className="muted" style={{marginTop:8}}>Order <b style={{color:"var(--ink)"}}>#{order.id}</b> for {order.items} item{order.items!==1?"s":""} · {fmt(order.total)}</p>
+    <p className="muted" style={{marginTop:10,fontSize:13.5}}>A confirmation would normally be sent to {order.email}. This is a prototype — no payment was taken and no order was placed.</p>
+    <div style={{display:"flex",gap:12,justifyContent:"center",marginTop:24,flexWrap:"wrap"}}>
+      <button className="btn btn-primary" onClick={()=>go({name:"shop"})}>Continue shopping</button>
+      <a className="btn btn-wa" href={waLink(`Hi ${CONFIG.BRAND}, I just placed order ${order.id}.`)} target="_blank" rel="noopener"><Icon n="wa"/>Message us</a>
+    </div>
+  </div></div>;
+}
+
+/* =============================== WISHLIST =============================== */
+function Wishlist(){
+  const {wish,go}=useStore();
+  const items=wish.map(byId).filter(Boolean);
+  return <div className="wrap section" style={{paddingBlock:34}}>
+    <div className="breadcrumb"><a href="#" onClick={e=>{e.preventDefault();go({name:"home"});}}>Home</a><Icon n="right"/><span>Wishlist</span></div>
+    <h1 style={{fontSize:"2rem",marginBottom:20}}>Your Wishlist</h1>
+    {items.length===0?<div className="empty"><Icon n="heart"/><p>Your wishlist is empty. Tap the heart on any product to save it here.</p>
+      <button className="btn btn-primary" style={{marginTop:14}} onClick={()=>go({name:"shop"})}>Browse products</button></div>
+      :<ProductGrid items={items}/>}
+  </div>;
+}
+
+/* =============================== STATIC PAGES =============================== */
+function PageShell({title,crumb,children}){
+  const {go}=useStore();
+  return <div className="wrap section" style={{paddingBlock:34}}>
+    <div className="breadcrumb"><a href="#" onClick={e=>{e.preventDefault();go({name:"home"});}}>Home</a><Icon n="right"/><span>{crumb||title}</span></div>
+    <h1 style={{fontSize:"clamp(1.9rem,3.4vw,2.6rem)",marginBottom:18}}>{title}</h1>
+    <div className="prose">{children}</div>
+  </div>;
+}
+function About(){
+  const {go}=useStore();
+  return <div>
+    <section className="hero"><div className="wrap" style={{paddingBlock:"clamp(30px,5vw,56px)",textAlign:"center",maxWidth:760,margin:"0 auto"}}>
+      <span className="eyebrow">About Pure Baby</span>
+      <h1 style={{fontSize:"clamp(2rem,4vw,3rem)",marginTop:12}}>Made for the people who care the most.</h1>
+      <p className="muted" style={{marginTop:16,fontSize:16.5,lineHeight:1.7}}>Pure Baby is focused on one thing: making it easier for parents to discover carefully selected baby essentials, without wading through endless choices or unclear labels.</p>
+    </div></section>
+    <section className="section"><div className="wrap prose" style={{margin:"0 auto"}}>
+      <p>We started Pure Baby because choosing for a baby shouldn't feel overwhelming. Feeding, changing and everyday skin care come with enough decisions already. So we keep our range focused on essentials from trusted brands, present clear information about sizes, ages and quantities, and stay reachable when you have a question.</p>
+      <h2>What we care about</h2>
+      <ul>
+        <li><b>Gentle choices.</b> Products chosen with a baby's delicate skin and tiny tummy in mind.</li>
+        <li><b>Honest information.</b> Clear sizes, weights and packs — and a reminder to always check the pack for the latest details.</li>
+        <li><b>Easy help.</b> A WhatsApp message away whenever you're unsure what to pick.</li>
+      </ul>
+      <div className="notice sage" style={{margin:"22px 0"}}>We only claim what we can stand behind. This prototype does not state years in business, customer numbers, certifications, endorsements or awards — those will be added only when they're real.</div>
+      <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
+        <button className="btn btn-primary" onClick={()=>go({name:"shop"})}>Shop essentials</button>
+        <button className="btn btn-outline" onClick={()=>go({name:"contact"})}>Contact us</button>
+      </div>
+    </div></section>
+  </div>;
+}
+function CopyField({label,value}){
+  const [copied,setCopied]=useState(false);
+  const copy=()=>{navigator.clipboard&&navigator.clipboard.writeText(value).then(()=>{setCopied(true);setTimeout(()=>setCopied(false),1500);}).catch(()=>{});};
+  return <div style={{display:"flex",alignItems:"center",gap:10,justifyContent:"space-between",border:"1px solid var(--line)",borderRadius:12,padding:"12px 14px",background:"var(--surface-2)"}}>
+    <div><div className="muted" style={{fontSize:11,textTransform:"uppercase",letterSpacing:".07em"}}>{label}</div>
+      <div style={{fontWeight:600,userSelect:"all"}}>{value}</div></div>
+    <button className="btn btn-ghost btn-sm" onClick={copy}><Icon n="copy"/>{copied?"Copied":"Copy"}</button>
+  </div>;
+}
+function Contact(){
+  return <PageShell title="Contact Us">
+    <p>Questions about a product, an order or a size? We're happy to help — the fastest way to reach us is WhatsApp.</p>
+    <a className="btn btn-wa btn-lg" style={{margin:"6px 0 20px"}} href={waLink(`Hi ${CONFIG.BRAND}, I'd like some help.`)} target="_blank" rel="noopener"><Icon n="wa"/>Chat with us on WhatsApp</a>
+    <div style={{display:"flex",flexDirection:"column",gap:12,maxWidth:440}}>
+      <CopyField label="WhatsApp / Phone" value={CONFIG.PHONE}/>
+      <CopyField label="Email" value={CONFIG.EMAIL}/>
+    </div>
+    <h3>Hours</h3><p>Monday to Saturday, 10am – 7pm IST. We usually reply to WhatsApp messages within a few hours.</p>
+    <div className="notice" style={{marginTop:14}}>The phone number shown is a placeholder for this prototype. Replace it with Pure Baby's own WhatsApp business number in the config.</div>
+  </PageShell>;
+}
+function FAQ(){
+  const items=[
+    ["How long does delivery take?","Orders are dispatched within 1–2 business days and typically delivered across India within 3–7 business days depending on your location."],
+    ["Is shipping really free?",`Yes — shipping is free on all orders above ${fmt(CONFIG.FREE_SHIPPING_THRESHOLD)}. Below that, a flat ${fmt(CONFIG.SHIPPING_FLAT)} applies.`],
+    ["Are your products authentic?","We source genuine products from trusted, well-known baby-care brands. Always check pack seals and batch details on delivery."],
+    ["Can I return a product?","Unopened items in original packaging can be returned within 7 days. For hygiene reasons, opened baby food, diapers and personal-care products can't be returned unless damaged or defective."],
+    ["How do I choose the right diaper size?","Each diaper lists the baby-weight range it's designed for. See the size guide on any diaper product page, or message us on WhatsApp and we'll help."],
+    ["Which payment methods can I use?","UPI, credit/debit cards, net banking and cash on delivery. (Payments are simulated in this prototype.)"],
+    ["Do you offer help choosing products?","Yes — message us on WhatsApp and we'll help you pick what's right for your baby."],
+  ];
+  return <PageShell title="Frequently Asked Questions">
+    <div style={{maxWidth:"none"}}>{items.map(([q,a])=><Accordion key={q} title={q}><p>{a}</p></Accordion>)}</div>
+  </PageShell>;
+}
+function Policy({which}){
+  const P={
+    shipping:{t:"Shipping Policy",b:<>
+      <p>We deliver across India. Orders are processed within 1–2 business days.</p>
+      <h3>Charges</h3><p>Free shipping on orders above {fmt(CONFIG.FREE_SHIPPING_THRESHOLD)}. A flat shipping fee of {fmt(CONFIG.SHIPPING_FLAT)} applies to orders below that threshold.</p>
+      <h3>Delivery time</h3><p>Estimated delivery is 3–7 business days depending on your location. You'll receive tracking details once your order ships.</p>
+      <h3>Delays</h3><p>Occasionally, weather, courier or regional factors may delay delivery. If your order is significantly delayed, message us on WhatsApp and we'll look into it.</p></>},
+    returns:{t:"Return & Refund Policy",b:<>
+      <p>We want you to be comfortable with every purchase. Because these are baby-care products, some hygiene rules apply.</p>
+      <h3>What can be returned</h3><p>Unopened items in their original, sealed packaging can be returned within 7 days of delivery.</p>
+      <h3>What can't be returned</h3><p>For hygiene and safety reasons, opened baby food, diapers and personal-care products can't be returned unless they arrived damaged, defective or incorrect.</p>
+      <h3>Refunds</h3><p>Approved refunds are issued to your original payment method within 5–7 business days of us receiving the returned item.</p>
+      <h3>Damaged or wrong item</h3><p>Message us on WhatsApp within 48 hours of delivery with a photo, and we'll arrange a replacement or refund.</p></>},
+    privacy:{t:"Privacy Policy",b:<>
+      <p>Your trust matters to us. This policy explains, in plain terms, how Pure Baby would handle your information.</p>
+      <h3>What we collect</h3><p>Details you provide to place an order — name, contact details and delivery address — and basic information about how you use the site.</p>
+      <h3>How we use it</h3><p>To process and deliver your orders, provide support, and improve your shopping experience. We don't sell your personal information.</p>
+      <h3>Payments</h3><p>Payment details would be handled by secure, PCI-compliant payment providers. (In this prototype, no real payment data is collected.)</p>
+      <h3>Your choices</h3><p>You can ask us to access, correct or delete your information by contacting us.</p>
+      <div className="notice" style={{marginTop:12}}>This is placeholder policy copy for a prototype and is not legal advice. Have a qualified professional review your final policies before launch.</div></>},
+    terms:{t:"Terms & Conditions",b:<>
+      <p>These terms would govern your use of the Pure Baby website and your purchases.</p>
+      <h3>Products & pricing</h3><p>We aim to describe products accurately, but always check the physical pack for the latest ingredient, allergen and usage information. Prices and availability may change without notice.</p>
+      <h3>Orders</h3><p>Placing an order is an offer to buy; we may accept or decline it. We may cancel and refund orders in cases of pricing errors or stock issues.</p>
+      <h3>Health note</h3><p>Our product information is general and not medical advice. Consult a paediatrician or healthcare professional for guidance specific to your child.</p>
+      <h3>Liability</h3><p>To the extent permitted by law, Pure Baby is not liable for indirect or incidental losses arising from use of the site.</p>
+      <div className="notice" style={{marginTop:12}}>This is placeholder legal copy for a prototype and is not legal advice.</div></>},
+  }[which];
+  return <PageShell title={P.t}>{P.b}</PageShell>;
+}
+
+/* =============================== FOOTER =============================== */
+function Footer(){
+  const {go}=useStore();
+  const [subd,setSubd]=useState(false);
+  const L=(label,r)=><li><a href="#" onClick={e=>{e.preventDefault();go(r);}}>{label}</a></li>;
+  return <footer className="footer">
+    <div className="wrap footer__grid">
+      <div>
+        <div className="logo" style={{marginBottom:12}}>
+          <svg className="logo__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <circle cx="24" cy="24" r="23" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.35)" strokeWidth="1.2"/>
+            <path d="M24 34c-6-3.4-10-6.8-10-11.4C14 19 16.4 17 19 17c2 0 3.7 1.1 5 3 1.3-1.9 3-3 5-3 2.6 0 5 2 5 5.6C34 27.2 30 30.6 24 34z" fill="var(--peach)"/>
+            <circle cx="24" cy="15" r="3.4" fill="#fff"/></svg>
+          <span className="logo__text" style={{color:"#fff"}}>Pure Baby<small style={{color:"var(--peach)"}}>{CONFIG.DOMAIN}</small></span>
+        </div>
+        <p style={{fontSize:13.5,color:"#C7C1B0",maxWidth:"34ch"}}>Gentle choices for little ones — carefully selected baby food, diapers and skin & bath care.</p>
+        <div className="newsletter">
+          <input placeholder="Your email for gentle updates" aria-label="Email"/>
+          <button className="btn btn-peach btn-sm" onClick={()=>setSubd(true)}>{subd?"Thanks!":"Join"}</button>
+        </div>
+      </div>
+      <div><h5>Shop</h5><ul>{L("Baby Food",{name:"category",slug:"baby-food"})}{L("Diapers",{name:"category",slug:"diapers"})}{L("Skin & Bath Care",{name:"category",slug:"skin-bath"})}{L("Shop All",{name:"shop"})}</ul></div>
+      <div><h5>Customer Care</h5><ul>{L("Contact Us",{name:"contact"})}{L("FAQ",{name:"faq"})}{L("Shipping",{name:"shipping"})}{L("Returns & Refunds",{name:"returns"})}</ul></div>
+      <div><h5>Company</h5><ul>{L("About Pure Baby",{name:"about"})}{L("Privacy Policy",{name:"privacy"})}{L("Terms & Conditions",{name:"terms"})}
+        <li><a href={waLink(`Hi ${CONFIG.BRAND}!`)} target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+    </div>
+    <div className="wrap footer__bottom">
+      <span>© 2026 Pure Baby. All rights reserved.</span>
+      <span>Prototype · {CONFIG.DOMAIN} · illustrative catalogue data</span>
+    </div>
+  </footer>;
+}
+
+/* =============================== TOASTS + WA FAB =============================== */
+function Toasts(){
+  const {toasts}=useStore();
+  return <div className="toasts">{toasts.map(t=><div key={t.id} className="toast"><Icon n="check"/>{t.msg}</div>)}</div>;
+}
+function WhatsAppFab(){
+  const {route}=useStore();
+  const msg = route.name==="product" ? `Hi ${CONFIG.BRAND}, I have a question about ${(byId(route.id)||{}).name||"a product"}.` : `Hi ${CONFIG.BRAND}, I'd like some help.`;
+  return <a className="wa-fab" href={waLink(msg)} target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <Icon n="wa"/><span className="lbl">Chat with us on WhatsApp</span></a>;
+}
+
+/* =============================== APP =============================== */
+function Router(){
+  const {route}=useStore();
+  switch(route.name){
+    case "home":return <Home/>;
+    case "shop":return <Collection mode="shop"/>;
+    case "category":return <Collection mode="category" slug={route.slug}/>;
+    case "search":return <Collection mode="search" query={route.q||sessionGet()}/>;
+    case "product":return <ProductPage id={route.id}/>;
+    case "cart":return <CartPage/>;
+    case "checkout":return <Checkout/>;
+    case "wishlist":return <Wishlist/>;
+    case "about":return <About/>;
+    case "contact":return <Contact/>;
+    case "faq":return <FAQ/>;
+    case "shipping":return <Policy which="shipping"/>;
+    case "returns":return <Policy which="returns"/>;
+    case "privacy":return <Policy which="privacy"/>;
+    case "terms":return <Policy which="terms"/>;
+    default:return <Home/>;
+  }
+}
+function App(){
+  return <StoreProvider>
+    <AnnouncementBar/>
+    <Header/>
+    <main><Router/></main>
+    <Footer/>
+    <MobileBottomNav/>
+    <WhatsAppFab/>
+    <SearchOverlay/>
+    <CartDrawer/>
+    <Toasts/>
+  </StoreProvider>;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
